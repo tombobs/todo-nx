@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './app/app';
 import { theme } from './theme';
 import { Provider as StoreProvider } from 'react-redux';
-import store from './app/store';
+import store from './app/shared/store';
 import { ThemeProvider } from '@mui/material';
 
 ReactDOM.createRoot(

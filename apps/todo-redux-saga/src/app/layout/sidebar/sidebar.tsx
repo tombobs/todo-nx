@@ -7,6 +7,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import {addList, listsSelector} from '../../todo/todo-store';
 import {NavLink, useNavigate} from 'react-router-dom';
 import {IList} from '@todo-nx/interfaces';
+import {Person} from '@mui/icons-material';
+import {environment} from '../../../environments/environment';
 
 export interface SidebarProps {
   toggleExpand: () => void;
@@ -44,6 +46,15 @@ export function Sidebar({toggleExpand, isExpanded}: SidebarProps) {
           </ListItem>
         )}
       </List>
+
+      <NavLink to={environment.ssoUrl} style={{whiteSpace: 'nowrap'}}>
+        <ListItemButton sx={{whiteSpace: 'nowrap', background: 'black', color: 'white'}}>
+          <ListItemIcon>
+            <Person sx={{color: 'white'}}/>
+          </ListItemIcon>
+          <ListItemText primary='Profile'/>
+        </ListItemButton>
+      </NavLink>
 
       <Paper sx={{
         border: '1px solid black',

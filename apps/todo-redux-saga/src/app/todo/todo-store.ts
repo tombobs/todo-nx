@@ -1,5 +1,5 @@
 import {createSlice, Draft, PayloadAction} from '@reduxjs/toolkit';
-import {State} from '../store';
+import {State} from '../shared/store';
 import {IList, IListTheme, ITodo} from '@todo-nx/interfaces';
 
 export interface ITodoState {

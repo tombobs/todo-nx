@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@todo-nx/authentication-api": ["libs/authentication-api/src/index.ts"],
       "@todo-nx/interfaces": ["libs/interfaces/src/index.ts"]
     }
   },

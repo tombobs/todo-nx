@@ -18,6 +18,7 @@ export function Header() {
   const error = useSelector(errorSelector);
   const editingActiveListName = useSelector(editListNameSelector);
   const previousLoading = usePrevious(loading);
+  const [saveSuccess, setSaveSuccess] = useState<boolean>(false);
 
   const dispatch = useDispatch();
 
@@ -27,10 +28,14 @@ export function Header() {
     setAnchorEl(null);
   }
   
-  if (previousLoading && !loading) {
-    // show save OK icon
-  }
-  console.log(previousLoading)
+  // if (previousLoading && !loading) {
+  //   setSaveSuccess(true);
+  // }
+  //
+  // if (loading) {
+  //   setSaveSuccess(false);
+  // }
+
 
   return (
     <div className={styles.header}>
@@ -88,6 +93,7 @@ export function Header() {
       </div>
 
       <div className={styles.right}>
+        {saveSuccess && <>y</>}
         {loading && <SyncIcon fontSize={'inherit'} sx={{
           animation: "spin 2s linear infinite",
           "@keyframes spin": {

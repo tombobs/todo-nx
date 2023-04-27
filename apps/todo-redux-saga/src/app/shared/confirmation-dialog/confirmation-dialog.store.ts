@@ -1,6 +1,6 @@
 import {createSlice, Draft, PayloadAction} from '@reduxjs/toolkit';
 import {IConfirmationDialogOpen} from './confirmation-dialog.interface';
-import {State} from '../../store';
+import {State} from '../store';
 
 export interface IConfirmationDialogState {
   message?: string;
