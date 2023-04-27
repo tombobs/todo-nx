@@ -1,0 +1,44 @@
+.container {
+  border-left: 1px solid black;
+  padding: var(--padding) var(--padding) 0 var(--padding);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #0000005e;
+
+  >:not(:last-child):not(:first-child) {
+    margin-bottom: var(--padding);
+  }
+}
+
+
+
+.complete {
+
+}
+
+.bottom {
+  margin: auto calc(-1 * #{var(--padding)}) 0 calc(-1 * #{var(--padding)});
+  font-weight: lighter;
+  font-size: 0.8em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+
+  .label {
+    padding-left: var(--padding);
+    margin-right: 5px;
+    display: inline-block;
+  }
+}
+
+.close {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.created {
+  font-weight: normal;
+}

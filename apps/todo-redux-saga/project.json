@@ -1,0 +1,96 @@
+{
+  "name": "todo-redux-saga",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/todo-redux-saga/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/todo-redux-saga",
+        "index": "apps/todo-redux-saga/src/index.html",
+        "baseHref": "/",
+        "main": "apps/todo-redux-saga/src/main.tsx",
+        "tsConfig": "apps/todo-redux-saga/tsconfig.app.json",
+        "assets": [
+          "apps/todo-redux-saga/src/favicon.ico",
+          "apps/todo-redux-saga/src/assets"
+        ],
+        "styles": ["apps/todo-redux-saga/src/styles.scss"],
+        "scripts": [],
+        "isolatedConfig": true,
+        "webpackConfig": "apps/todo-redux-saga/webpack.config.js"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/todo-redux-saga/src/environments/environment.ts",
+              "with": "apps/todo-redux-saga/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/webpack:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "todo-redux-saga:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "todo-redux-saga:build:development"
+        },
+        "production": {
+          "buildTarget": "todo-redux-saga:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/todo-redux-saga/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "serve-static": {
+      "executor": "@nrwl/web:file-server",
+      "options": {
+        "buildTarget": "todo-redux-saga:build"
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/todo-redux-saga/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,29 @@
+.layout {
+  height: 100%;
+  background: cadetblue;
+
+  display: grid;
+  grid-template-areas:
+          'sidebar header'
+          'sidebar content';
+  grid-template-columns: 55px 1fr;
+  grid-template-rows: 70px 1fr;
+  transition: grid-template-columns var(--transition);
+
+  &.sidebarExpanded {
+    grid-template-columns: 200px 1fr;
+  }
+}
+
+.content {
+  background: whitesmoke;
+  grid-area: content;
+}
+
+.header {
+  grid-area: header;
+}
+
+.sidebar {
+  grid-area: sidebar;
+}

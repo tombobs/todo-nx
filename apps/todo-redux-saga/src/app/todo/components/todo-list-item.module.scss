@@ -1,0 +1,36 @@
+
+.item {
+  border: 1px solid #b2b2b2;
+  max-height: 45px;
+  border-radius: var(--border-radius);
+
+  &:not(:last-child) {
+    margin-bottom: 5px;
+  }
+
+  [role='button'] {
+    max-height: 45px;
+  }
+}
+
+.complete {
+  text-decoration: line-through !important;
+
+  &.opaqueComplete {
+    opacity: 0.25;
+  }
+}
+
+.active {
+  margin: 5px 0;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  border: 1px solid var(--primary) !important;
+}

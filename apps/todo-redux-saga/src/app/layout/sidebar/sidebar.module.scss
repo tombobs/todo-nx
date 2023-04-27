@@ -1,0 +1,54 @@
+.sidebar {
+  overflow: hidden;
+  grid-area: sidebar;
+  //transform: rotate(360deg);
+  border-right: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  svg {
+    transition: transform var(--transition) !important;
+  }
+
+  .rotate svg {
+    transform: rotate(180deg);
+  }
+
+  ul {
+    position: relative;
+    padding: 0;
+  }
+
+  li {
+    white-space: nowrap;
+    border-bottom: 1px solid black;
+
+    &:first-child {
+      border-top: 1px solid black;
+    }
+  }
+
+
+}
+
+.active {
+  color: black;
+  background: var(--primary);
+  width: 100%;
+  font-weight: bolder;
+
+  svg {
+    color: black;
+  }
+}
+
+.navLink {
+  color: inherit;
+
+  opacity: 0.6;
+
+  &:hover {
+    opacity: 1;
+  }
+}
