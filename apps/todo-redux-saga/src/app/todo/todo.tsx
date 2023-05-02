@@ -9,16 +9,16 @@ import {
   selectTodo,
   updateTodo
 } from './todo-store';
-import {AddTodo} from './components/add-todo/add-todo';
-import {useDispatch, useSelector} from 'react-redux';
-import {useEffect, useState} from 'react';
-import {TodoList} from './components/todo-list/todo-list';
-import {useParams} from 'react-router';
-import {useNavigate} from 'react-router-dom';
-import {ITodo, listThemes} from '@todo-nx/interfaces';
+import { AddTodo } from './components/add-todo/add-todo';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { TodoList } from './components/todo-list/todo-list';
+import { useParams } from 'react-router';
+import { useNavigate } from 'react-router-dom';
+import { ITodo, listThemes } from '@todo-nx/interfaces';
 import styles from './todo.module.scss';
-import {TodoDetail} from './components/todo-detail/todo-detail';
-import {openConfirmationDialog} from '../shared/confirmation-dialog/confirmation-dialog.store';
+import { TodoDetail } from './components/todo-detail/todo-detail';
+import { openConfirmationDialog } from '../../../../../libs/react-components/src/confirmation-dialog/confirmation-dialog.store';
 
 
 export function Todo() {
@@ -31,23 +31,23 @@ export function Todo() {
 
   const [showCompleted, setShowCompleted] = useState<boolean>(true);
 
-  const {id} = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(selectList({id, navigate}));
+    dispatch(selectList({ id, navigate }));
   }, [dispatch, id, lists]);
 
   function onToggleComplete(todo: ITodo): void {
-    dispatch(updateTodo({...todo, isComplete: !todo.isComplete}));
+    dispatch(updateTodo({ ...todo, isComplete: !todo.isComplete }));
   }
 
   function onToggleStar(todo: ITodo): void {
-    dispatch(updateTodo({...todo, starred: !todo.starred}));
+    dispatch(updateTodo({ ...todo, starred: !todo.starred }));
   }
 
   function onNotesEdit(todo: ITodo, notes: string): void {
-    dispatch(updateTodo({...todo, notes}));
+    dispatch(updateTodo({ ...todo, notes }));
   }
 
   function onSelect(todo?: ITodo): void {
@@ -63,19 +63,19 @@ export function Todo() {
 
   function getBackground(): string | undefined {
     if (activeList?.theme) {
-      return listThemes.find(t => t.id === activeList!.theme)?.color!
+      return listThemes.find(t => t.id === activeList!.theme)?.color!;
     }
   }
 
   return (
     <div className={styles.container + ' ' + (activeTodo ? styles.expanded : '')}>
 
-      <div className={styles.list} style={{background: getBackground()}}>
+      <div className={styles.list} style={{ background: getBackground() }}>
 
         <TodoList todos={incompleteTodos} toggleComplete={onToggleComplete} toggleStar={onToggleStar}
                   select={onSelect} activeTodo={activeTodo}/>
 
-        <AddTodo style={{marginTop: '20px'}}/>
+        <AddTodo style={{ marginTop: '20px' }}/>
 
         {completeTodos.length !== 0 &&
         <em onClick={() => setShowCompleted(!showCompleted)} className={styles.toggleShowComplete}>
@@ -83,8 +83,9 @@ export function Todo() {
         </em>}
 
         {showCompleted && completeTodos.length !== 0 &&
-        <TodoList todos={completeTodos} toggleComplete={onToggleComplete} toggleStar={onToggleStar} select={onSelect}
-                  opaqueComplete={true}  activeTodo={activeTodo} />}
+        <TodoList todos={completeTodos} toggleComplete={onToggleComplete} toggleStar={onToggleStar}
+                  select={onSelect}
+                  opaqueComplete={true} activeTodo={activeTodo}/>}
       </div>
 
       <TodoDetail activeTodo={activeTodo} toggleComplete={onToggleComplete} toggleStar={onToggleStar}

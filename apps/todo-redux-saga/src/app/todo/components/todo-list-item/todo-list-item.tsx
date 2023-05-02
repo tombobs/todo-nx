@@ -1,9 +1,9 @@
 import styles from './todo-list-item.module.scss';
-import {Checkbox, IconButton, ListItem, ListItemButton, ListItemIcon, ListItemText, Paper} from '@mui/material';
+import { Checkbox, IconButton, ListItem, ListItemButton, ListItemIcon, ListItemText, Paper } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
-import {ITodo} from '@todo-nx/interfaces';
-import {ChangeEvent, MouseEvent, useRef} from 'react';
+import { ITodo } from '@todo-nx/interfaces';
+import { ChangeEvent, MouseEvent, useRef } from 'react';
 
 export interface TodoListItemProps {
   item?: ITodo;
@@ -14,7 +14,7 @@ export interface TodoListItemProps {
   isActive: boolean;
 }
 
-export function TodoListItem({item, toggleComplete, toggleStar, click, opaqueComplete, isActive}: TodoListItemProps) {
+export function TodoListItem({ item, toggleComplete, toggleStar, click, opaqueComplete, isActive }: TodoListItemProps) {
 
   const checkboxRef = useRef<HTMLButtonElement>(null);
 
@@ -35,10 +35,10 @@ export function TodoListItem({item, toggleComplete, toggleStar, click, opaqueCom
   }
 
   return (
-    <Paper >
+    <Paper>
       <ListItem disablePadding key={item?.id}
                 onClick={onClick}
-                sx={{minWidth: '200px'}}
+                sx={{ minWidth: '200px' }}
                 className={`${styles.item} ${item?.isComplete ? styles.complete : ''} ${opaqueComplete ? styles.opaqueComplete : ''} ${isActive ? styles.active : ''}`}
                 secondaryAction={
                   <IconButton edge='end' onClick={e => onToggleStar(e, item!)}>

@@ -9,7 +9,7 @@ export class LocalAuthGuard implements CanActivate {
 
   async canActivate(context: ExecutionContext) {
     const { email, password } = context.switchToHttp().getRequest().body;
-    const user = await this.authService.validate(email, password);
+    const user = await this.authService.validate({email, password});
     return !!user;
   }
 }

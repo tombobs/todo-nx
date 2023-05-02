@@ -1,21 +1,21 @@
 import styles from './sidebar.module.scss';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import DragHandleIcon from '@mui/icons-material/DragHandle';
-import {List, ListItem, ListItemButton, ListItemIcon, ListItemText, Paper, useTheme} from '@mui/material';
+import { List, ListItem, ListItemButton, ListItemIcon, ListItemText, Paper, useTheme } from '@mui/material';
 import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
-import {useDispatch, useSelector} from 'react-redux';
-import {addList, listsSelector} from '../../todo/todo-store';
-import {NavLink, useNavigate} from 'react-router-dom';
-import {IList} from '@todo-nx/interfaces';
-import {Person} from '@mui/icons-material';
-import {environment} from '../../../environments/environment';
+import { useDispatch, useSelector } from 'react-redux';
+import { addList, listsSelector } from '../../todo/todo-store';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { IList } from '@todo-nx/interfaces';
+import { Person } from '@mui/icons-material';
+import { environment } from '../../../environments/environment';
 
 export interface SidebarProps {
   toggleExpand: () => void;
   isExpanded: boolean;
 }
 
-export function Sidebar({toggleExpand, isExpanded}: SidebarProps) {
+export function Sidebar({ toggleExpand, isExpanded }: SidebarProps) {
   const lists = useSelector(listsSelector);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -29,11 +29,11 @@ export function Sidebar({toggleExpand, isExpanded}: SidebarProps) {
         </ListItemIcon>
       </ListItemButton>
 
-      <List sx={{height: '100%', maxHeight: 'calc(100% - 90px)', overflow: 'hidden auto'}}>
+      <List sx={{ height: '100%', maxHeight: 'calc(100% - 90px)', overflow: 'hidden auto' }}>
         {lists.map((l: IList) =>
           <ListItem disablePadding key={l.id}>
-            <NavLink style={{textDecoration: 'none', width: '100%'}} to={'/' + l.id?.toString()}
-                     className={({isActive}) =>
+            <NavLink style={{ textDecoration: 'none', width: '100%' }} to={'/' + l.id?.toString()}
+                     className={({ isActive }) =>
                        isActive ? styles.active : styles.navLink
                      }>
               <ListItemButton>
@@ -47,10 +47,10 @@ export function Sidebar({toggleExpand, isExpanded}: SidebarProps) {
         )}
       </List>
 
-      <NavLink to={environment.ssoUrl} style={{whiteSpace: 'nowrap'}}>
-        <ListItemButton sx={{whiteSpace: 'nowrap', background: 'black', color: 'white'}}>
+      <NavLink to={environment.ssoUrl} style={{ whiteSpace: 'nowrap' }}>
+        <ListItemButton sx={{ whiteSpace: 'nowrap', background: 'black', color: 'white' }}>
           <ListItemIcon>
-            <Person sx={{color: 'white'}}/>
+            <Person sx={{ color: 'white' }}/>
           </ListItemIcon>
           <ListItemText primary='Profile'/>
         </ListItemButton>
@@ -61,9 +61,9 @@ export function Sidebar({toggleExpand, isExpanded}: SidebarProps) {
         borderRadius: '0',
         width: '100%',
         whiteSpace: 'nowrap',
-        '&:hover': {background: theme.palette.primary.main}
+        '&:hover': { background: theme.palette.primary.main }
       }}>
-        <ListItemButton onClick={() => dispatch(addList({navigate}))}>
+        <ListItemButton onClick={() => dispatch(addList({ navigate }))}>
           <ListItemIcon>
             <LibraryAddIcon/>
           </ListItemIcon>

@@ -1,11 +1,14 @@
-import {all, takeEvery} from 'redux-saga/effects';
-import {todoSaga} from '../todo/todo.saga';
-import {listSaga} from '../list/list.saga';
-import {PayloadAction} from '@reduxjs/toolkit';
-import {apiError} from '../todo/todo-store';
+import { all, put, takeEvery } from 'redux-saga/effects';
+import { todoSaga } from '../todo/todo.saga';
+import { listSaga } from '../list/list.saga';
+import { PayloadAction } from '@reduxjs/toolkit';
+import { apiError } from '../todo/todo-store';
+import { AxiosError } from 'axios';
+import { showErrorSnackbar } from '@todo-nx/react-components';
+import { environment } from '../../environments/environment';
 
 
-export function* rootSaga () {
+export function* rootSaga() {
   yield all([
     todoSaga(),
     listSaga(),
@@ -13,7 +16,12 @@ export function* rootSaga () {
   ]);
 }
 
-function* apiErrorSaga(action: PayloadAction<any>) {
-  console.log(action.payload);
-  alert('error');
+function* apiErrorSaga(action: PayloadAction<AxiosError>) {
+  debugger;
+  switch (action.payload.response?.status) {
+    case 401:
+      return location.href = environment.ssoUrl;
+    default:
+      yield put(showErrorSnackbar({message: 'Sorry - something went wrong'}));
+  }
 }

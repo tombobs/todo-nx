@@ -1,3 +1,6 @@
+import * as dotenv from 'dotenv';
+dotenv.config();
+
 export * from './lib/jwt/jwt.guard';
 export * from './lib/jwt/jwt.strategy';
 

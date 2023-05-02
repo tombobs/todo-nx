@@ -1,0 +1,72 @@
+@import "palette.module";
+
+.container {
+  flex: 1;
+  display: flex;
+  height: 100%;
+
+  .left {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+
+    .formContainer {
+      max-width: 400px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      p {
+        max-width: 400px;
+      }
+    }
+  }
+
+  .right {
+    width: 50%;
+    position: relative;
+    background: var(--primary);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .text {
+      z-index: 2;
+      color: white;
+      text-align: center;
+      padding-left: 10%;
+      padding-bottom: 20%;
+    }
+
+    img {
+      position: absolute;
+
+      &.bg {
+        height: 100%;
+        width: 90%;
+        top: 0;
+        left: 10%;
+        object-fit: cover;
+      }
+
+      &.rocket {
+        width: 100%;
+        right: 0;
+        bottom: 0;
+        object-fit: scale-down;
+        max-height: 888px;
+        max-width: 1320px;
+      }
+    }
+  }
+}

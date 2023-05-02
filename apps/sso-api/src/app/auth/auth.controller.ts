@@ -1,9 +1,24 @@
-import { BadRequestException, Body, Controller, Ip, Post, UseGuards, Request, Headers, Get } from '@nestjs/common';
+import {
+  BadRequestException,
+  Body,
+  Controller,
+  Get,
+  Headers,
+  InternalServerErrorException,
+  Ip,
+  Post,
+  UseGuards
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { User } from './entities/user.entity';
 import { LocalAuthGuard } from './strategies/local/local.guard';
-import {IUser} from '@todo-nx/interfaces';
-import {UserFromToken, JwtAuthGuard} from '@todo-nx/authentication-api';
+import {
+  ICheckTokenRequest,
+  ILoginRequest,
+  IRequestPasswordResetRequest, IResetPasswordRequest,
+  IUser,
+  IVerifyRequest
+} from '@todo-nx/interfaces';
+import { JwtAuthGuard, UserFromToken } from '@todo-nx/authentication-api';
 
 @Controller('auth')
 export class AuthController {
@@ -12,27 +27,51 @@ export class AuthController {
 
   @Post('login')
   @UseGuards(LocalAuthGuard)
-  async login(@Request() req,
+  async login(@Body() body: ILoginRequest,
               @Headers('x-real-ip') ipAddress: string) {
-    return this.authService.login(req.body, ipAddress);
+    return this.authService.login(body);
+  }
+
+  @Get('profile')
+  @UseGuards(JwtAuthGuard)
+  async profile(@UserFromToken() user: IUser) {
+    return this.authService.findOne(user.email);
   }
 
   @Post('register')
   async register(@Body() user: IUser, @Ip() ipAddress: string) {
-    if (await this.authService.findOne(user.email)) {
-      throw new BadRequestException('Account already exists');
-    }
-
-    user.code = User.getCode();
-    user.password = await User.hashPassword(user.password);
-
-    const createdUser = await this.authService.save(user);
-    return this.authService.login(createdUser, ipAddress);
+    return this.authService.register(user, ipAddress);
   }
 
-  @UseGuards(JwtAuthGuard)
-  @Get('profile')
-  async profile(@UserFromToken() user: IUser) {
-    return this.authService.findOne(user.email);
+  @Post('verify')
+  async verify(@Body() { code, email }: IVerifyRequest) {
+    if (!code || !email) {
+      throw new BadRequestException();
+    }
+    return this.authService.verifyAccount(email, code);
+  }
+
+  @Post('request-password-reset')
+  async requestPasswordReset(@Body() request: IRequestPasswordResetRequest) {
+    const success = await this.authService.requestPasswordReset(request);
+    if (!success) {
+      throw new InternalServerErrorException();
+    }
+  }
+
+  @Post('check-password-reset-token')
+  async checkPasswordResetToken(@Body() { userId, token }: ICheckTokenRequest) {
+    if (!userId || !token) {
+      throw new BadRequestException();
+    }
+    const valid = await this.authService.checkPasswordResetToken({ userId, token });
+    if (!valid) {
+      throw new BadRequestException();
+    }
+  }
+
+  @Post('reset-password')
+  async resetPassword(@Body() request: IResetPasswordRequest) {
+    await this.authService.resetPassword(request);
   }
 }

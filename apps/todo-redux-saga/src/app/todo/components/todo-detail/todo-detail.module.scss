@@ -6,11 +6,10 @@
   flex-direction: column;
   background: #0000005e;
 
-  >:not(:last-child):not(:first-child) {
+  > :not(:last-child):not(:first-child) {
     margin-bottom: var(--padding);
   }
 }
-
 
 
 .complete {

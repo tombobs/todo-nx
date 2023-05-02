@@ -6,7 +6,9 @@
   "targets": {
     "build": {
       "executor": "@nrwl/webpack:webpack",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "defaultConfiguration": "production",
       "options": {
         "compiler": "babel",
@@ -15,11 +17,20 @@
         "baseHref": "/",
         "main": "apps/sso-ui/src/main.tsx",
         "tsConfig": "apps/sso-ui/tsconfig.app.json",
-        "assets": ["apps/sso-ui/src/favicon.ico", "apps/sso-ui/src/assets"],
-        "styles": ["apps/sso-ui/src/styles.scss"],
+        "assets": [
+          "apps/sso-ui/src/favicon.ico",
+          "apps/sso-ui/src/assets"
+        ],
+        "styles": [
+          "apps/sso-ui/src/styles.scss"
+        ],
         "scripts": [],
         "isolatedConfig": true,
-        "webpackConfig": "apps/sso-ui/webpack.config.js"
+        "webpackConfig": "apps/sso-ui/webpack.config.js",
+        "stylePreprocessorOptions": {
+          "includePaths": [ "libs/theme/src/theme" ]
+        },
+        "extractCss": true
       },
       "configurations": {
         "development": {
@@ -64,9 +75,13 @@
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["apps/sso-ui/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": [
+          "apps/sso-ui/**/*.{ts,tsx,js,jsx}"
+        ]
       }
     },
     "serve-static": {
@@ -77,7 +92,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "apps/sso-ui/jest.config.ts",
         "passWithNoTests": true

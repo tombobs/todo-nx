@@ -1,8 +1,20 @@
-const { composePlugins, withNx } = require('@nrwl/webpack');
+const {composePlugins, withNx} = require('@nrwl/webpack');
+const {merge} = require('webpack-merge');
 
 // Nx plugins for webpack.
 module.exports = composePlugins(withNx(), (config) => {
-  // Update the webpack config as needed here.
-  // e.g. `config.plugins.push(new MyPlugin())`
-  return config;
+    return merge(config, {
+        module: {
+            rules: [
+                {
+                    test: /\.s[ac]ss$/i,
+                    use: [
+                        "style-loader",
+                        "css-loader",
+                        "sass-loader",
+                    ],
+                },
+            ],
+        },
+    });
 });

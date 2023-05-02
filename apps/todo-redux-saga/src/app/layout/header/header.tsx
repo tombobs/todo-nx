@@ -1,16 +1,22 @@
 import styles from './header.module.scss';
 import HomeIcon from '@mui/icons-material/Home';
 import SettingsIcon from '@mui/icons-material/Settings';
-import {useDispatch, useSelector} from 'react-redux';
-import {activeListSelector, renameList, editListNameSelector, errorSelector, loadingSelector} from '../../todo/todo-store';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  activeListSelector,
+  editListNameSelector,
+  errorSelector,
+  loadingSelector,
+  renameList
+} from '../../todo/todo-store';
 import SyncIcon from '@mui/icons-material/Sync';
 import ReportIcon from '@mui/icons-material/Report';
-import {Link} from 'react-router-dom';
-import {IconButton, Paper, Popover, TextField} from '@mui/material';
-import {useState} from 'react';
-import {ListSettings} from '../../list/list-settings';
-import {ChevronRight} from '@mui/icons-material';
-import {usePrevious} from '../../../utils';
+import { Link } from 'react-router-dom';
+import { IconButton, Paper, Popover, TextField } from '@mui/material';
+import { useState } from 'react';
+import { ListSettings } from '../../list/settings/list-settings';
+import { ChevronRight } from '@mui/icons-material';
+import { usePrevious } from '../../../utils';
 
 export function Header() {
   const activeList = useSelector(activeListSelector);
@@ -27,7 +33,7 @@ export function Header() {
   if (!!anchorEl && (!activeList || editingActiveListName)) {
     setAnchorEl(null);
   }
-  
+
   // if (previousLoading && !loading) {
   //   setSaveSuccess(true);
   // }
@@ -47,10 +53,11 @@ export function Header() {
 
         {editingActiveListName &&
         <Paper>
-            <TextField defaultValue={activeList?.name} onBlur={e => dispatch(renameList({name: e.target.value, id: activeList!.id}))}
+            <TextField defaultValue={activeList?.name}
+                       onBlur={e => dispatch(renameList({ name: e.target.value, id: activeList!.id }))}
                        inputRef={input => input && setTimeout(() => input.focus())}/>
         </Paper>
-          || activeList?.name
+        || activeList?.name
         }
 
         {activeList && <>
@@ -75,7 +82,7 @@ export function Header() {
                           }
                         }}>
                 <SettingsIcon/>
-                <ChevronRight sx={{position: 'absolute', right: 4, opacity: 0}}/>
+                <ChevronRight sx={{ position: 'absolute', right: 4, opacity: 0 }}/>
             </IconButton>
 
             <Popover
@@ -95,13 +102,13 @@ export function Header() {
       <div className={styles.right}>
         {saveSuccess && <>y</>}
         {loading && <SyncIcon fontSize={'inherit'} sx={{
-          animation: "spin 2s linear infinite",
-          "@keyframes spin": {
-            "100%": {
-              transform: "rotate(0deg)",
+          animation: 'spin 2s linear infinite',
+          '@keyframes spin': {
+            '100%': {
+              transform: 'rotate(0deg)',
             },
-            "0%": {
-              transform: "rotate(360deg)",
+            '0%': {
+              transform: 'rotate(360deg)',
             },
           },
         }}/>}

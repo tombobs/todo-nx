@@ -8,7 +8,7 @@ describe('App', () => {
   it('should render successfully', () => {
     const { baseElement } = render(
       <BrowserRouter>
-        <App />
+        <App/>
       </BrowserRouter>
     );
     expect(baseElement).toBeTruthy();
@@ -17,7 +17,7 @@ describe('App', () => {
   it('should have a greeting as the title', () => {
     const { getByText } = render(
       <BrowserRouter>
-        <App />
+        <App/>
       </BrowserRouter>
     );
     expect(getByText(/Welcome sso-ui/gi)).toBeTruthy();

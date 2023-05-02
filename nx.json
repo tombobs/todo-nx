@@ -53,6 +53,21 @@
       },
       "library": {
         "style": "scss",
+        "linter": "eslint",
+        "unitTestRunner": "jest"
+      }
+    },
+    "@nx/react": {
+      "application": {
+        "babel": true
+      },
+      "library": {
+        "unitTestRunner": "none"
+      }
+    },
+    "@nx/next": {
+      "application": {
+        "style": "scss",
         "linter": "eslint"
       }
     }

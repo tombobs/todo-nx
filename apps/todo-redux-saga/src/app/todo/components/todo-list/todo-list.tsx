@@ -1,7 +1,7 @@
 import styles from './todo-list.module.scss';
-import {List} from '@mui/material';
-import {ITodo} from '@todo-nx/interfaces';
-import {TodoListItem} from '../todo-list-item/todo-list-item';
+import { List } from '@mui/material';
+import { ITodo } from '@todo-nx/interfaces';
+import { TodoListItem } from '../todo-list-item/todo-list-item';
 
 export interface TodoListProps {
   todos: ITodo[];
@@ -12,7 +12,7 @@ export interface TodoListProps {
   activeTodo?: ITodo;
 }
 
-export function TodoList({todos, toggleStar, toggleComplete, select, opaqueComplete, activeTodo}: TodoListProps) {
+export function TodoList({ todos, toggleStar, toggleComplete, select, opaqueComplete, activeTodo }: TodoListProps) {
   return (
     <List className={styles.list}>
       {todos.map((todo: ITodo) =>

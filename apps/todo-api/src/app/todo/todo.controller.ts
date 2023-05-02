@@ -1,8 +1,8 @@
-import {Body, Controller, Delete, HttpCode, HttpStatus, Param, Post, Put, UseGuards} from '@nestjs/common';
-import {ITodo, IUser} from '@todo-nx/interfaces';
-import {TodoService} from './todo.service';
-import {TodoEntity} from './todo.entity';
-import {JwtAuthGuard, UserFromToken} from '@todo-nx/authentication-api';
+import { Body, Controller, Delete, HttpCode, HttpStatus, Param, Post, Put, UseGuards } from '@nestjs/common';
+import { ITodo, IUser } from '@todo-nx/interfaces';
+import { TodoService } from './todo.service';
+import { TodoEntity } from './todo.entity';
+import { JwtAuthGuard, UserFromToken } from '@todo-nx/authentication-api';
 
 @UseGuards(JwtAuthGuard)
 @Controller('todo')

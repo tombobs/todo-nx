@@ -1,6 +1,6 @@
-import {createSlice, Draft, PayloadAction} from '@reduxjs/toolkit';
-import {State} from '../shared/store';
-import {IList, IListTheme, ITodo} from '@todo-nx/interfaces';
+import { createSlice, Draft, PayloadAction } from '@reduxjs/toolkit';
+import { State } from '../shared/store';
+import { IList, IListTheme, ITodo } from '@todo-nx/interfaces';
 
 export interface ITodoState {
   lists: IList[];
@@ -12,13 +12,13 @@ export interface ITodoState {
   editingActiveListName?: boolean;
 }
 
-const initialState: ITodoState = {lists: []};
+const initialState: ITodoState = { lists: [] };
 
 export const todoStoreKey = 'todo';
 
 export enum TodoSortBy {
-  name = 'title' ,
-  date = 'createdAt' ,
+  name = 'title',
+  date = 'createdAt',
   star = 'starred'
 }
 
@@ -52,7 +52,7 @@ export const todoStore = createSlice({
       const todoIndex = state.activeList!.todos.findIndex(t => t.id === action.payload.id);
       const existingTodo = state.lists[listIndex].todos[todoIndex];
 
-      state.lists[listIndex].todos.splice(todoIndex, 1, {...existingTodo, ...action.payload});
+      state.lists[listIndex].todos.splice(todoIndex, 1, { ...existingTodo, ...action.payload });
       state.loading = false;
     },
     addList: (state: Draft<ITodoState>, action: PayloadAction<{ navigate: any }>) => {
@@ -72,7 +72,7 @@ export const todoStore = createSlice({
     apiError: (state: Draft<ITodoState>, action: PayloadAction<any>) => {
       state.error = action.payload;
     },
-    removeList: (state: Draft<ITodoState>, action: PayloadAction<{list :IList, navigate?: any}>) => {
+    removeList: (state: Draft<ITodoState>, action: PayloadAction<{ list: IList, navigate?: any }>) => {
       state.loading = true;
     },
     removeListSuccess: (state: Draft<ITodoState>, action: PayloadAction<IList>) => {
@@ -116,10 +116,10 @@ export const todoStore = createSlice({
     startRenameList: (state: Draft<ITodoState>) => {
       state.editingActiveListName = true;
     },
-    renameList: (state: Draft<ITodoState>, action: PayloadAction<{id: string, name: string}>) => {
+    renameList: (state: Draft<ITodoState>, action: PayloadAction<{ id: string, name: string }>) => {
       state.loading = true;
     },
-    renameListSuccess:  (state: Draft<ITodoState>, action: PayloadAction<{id: string, name: string}>) => {
+    renameListSuccess: (state: Draft<ITodoState>, action: PayloadAction<{ id: string, name: string }>) => {
       const index = state.lists.findIndex(l => l.id === action.payload.id);
       state.lists[index].name = action.payload.name;
       state.editingActiveListName = false;
@@ -128,7 +128,7 @@ export const todoStore = createSlice({
     selectListTheme: (state: Draft<ITodoState>, action: PayloadAction<IListTheme | undefined>) => {
       state.loading = true;
     },
-    selectListThemeSuccess: (state: Draft<ITodoState>, action: PayloadAction<{id: string, theme?: IListTheme}>) => {
+    selectListThemeSuccess: (state: Draft<ITodoState>, action: PayloadAction<{ id: string, theme?: IListTheme }>) => {
       const index = state.lists.findIndex(l => l.id === action.payload.id);
       state.lists[index].theme = action.payload.theme?.id;
       state.loading = false;

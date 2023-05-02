@@ -1,7 +1,7 @@
-import {Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, UseGuards} from '@nestjs/common';
-import {IList, IListTheme, IUser} from '@todo-nx/interfaces';
-import {JwtAuthGuard, UserFromToken} from '@todo-nx/authentication-api';
-import {ListService} from './list.service';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, UseGuards } from '@nestjs/common';
+import { IList, IListTheme, IUser } from '@todo-nx/interfaces';
+import { JwtAuthGuard, UserFromToken } from '@todo-nx/authentication-api';
+import { ListService } from './list.service';
 
 @UseGuards(JwtAuthGuard)
 @Controller('list')

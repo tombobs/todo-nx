@@ -1,14 +1,14 @@
-import {configureStore} from '@reduxjs/toolkit';
-import todoStore, {ITodoState, todoStoreKey} from '../todo/todo-store';
-import createSagaMiddleware from 'redux-saga';
+import { configureStore } from '@reduxjs/toolkit';
 import {
   confirmationDialogStore,
   confirmationDialogStoreKey,
   IConfirmationDialogState
-} from './confirmation-dialog/confirmation-dialog.store';
-import {rootSaga} from './sagas';
+} from '@todo-nx/react-components';
+import todoStore, { ITodoState, todoStoreKey } from '../todo/todo-store';
+import createSagaMiddleware from 'redux-saga';
 
-const sagaMiddleware = createSagaMiddleware()
+const sagaMiddleware = createSagaMiddleware();
+import { rootSaga } from './sagas';
 
 export default configureStore({
   reducer: {
@@ -18,7 +18,7 @@ export default configureStore({
   middleware: [sagaMiddleware],
 });
 
-sagaMiddleware.run(rootSaga)
+sagaMiddleware.run(rootSaga);
 
 export type State = {
   [todoStoreKey]: ITodoState,

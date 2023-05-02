@@ -16,7 +16,10 @@
     "baseUrl": ".",
     "paths": {
       "@todo-nx/authentication-api": ["libs/authentication-api/src/index.ts"],
-      "@todo-nx/interfaces": ["libs/interfaces/src/index.ts"]
+      "@todo-nx/interfaces": ["libs/interfaces/src/index.ts"],
+      "@todo-nx/react-components": ["libs/react-components/src/index.ts"],
+      "@todo-nx/theme": ["libs/theme/src/index.ts"],
+      "@todo-nx/utils": ["libs/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

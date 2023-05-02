@@ -1,14 +1,14 @@
-import React, {useEffect} from 'react';
-import {Routes, useSearchParams} from 'react-router-dom';
-import {Route} from 'react-router';
-import {Layout} from './layout/layout';
-import {Todo} from './todo/todo';
-import {Lists} from './list/lists';
+import React, { useEffect } from 'react';
+import { Routes, useSearchParams } from 'react-router-dom';
+import { Route } from 'react-router';
+import { Layout } from './layout/layout';
+import { Todo } from './todo/todo';
+import { Lists } from './list/lists';
 import './app.module.scss';
-import {useDispatch} from 'react-redux';
-import {loadLists} from './todo/todo-store';
-import {environment} from '../environments/environment';
-import {checkToken} from '../utils';
+import { useDispatch } from 'react-redux';
+import { loadLists } from './todo/todo-store';
+import { environment } from '../environments/environment';
+import { checkToken } from '../utils';
 
 function App() {
 

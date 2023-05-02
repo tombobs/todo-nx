@@ -1,7 +1,7 @@
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
-import {IJWT, IUser} from '@todo-nx/interfaces';
+import { IJWT, IUser } from '@todo-nx/interfaces';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {

@@ -1,29 +1,29 @@
-import {useDispatch, useSelector} from 'react-redux';
-import {clearActiveList, listsSelector, removeList} from '../todo/todo-store';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearActiveList, listsSelector, removeList } from '../todo/todo-store';
 import styles from './lists.module.scss';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import {IList} from '@todo-nx/interfaces';
-import {MouseEvent, useEffect} from 'react';
-import {openConfirmationDialog} from '../shared/confirmation-dialog/confirmation-dialog.store';
+import { IList } from '@todo-nx/interfaces';
+import { MouseEvent, useEffect } from 'react';
+import { openConfirmationDialog } from '@todo-nx/react-components';
 
 export function Lists() {
   const lists = useSelector(listsSelector);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(clearActiveList())
+    dispatch(clearActiveList());
   }, []);
 
   function onDelete(e: MouseEvent, list: IList): void {
     e.preventDefault();
     if (!list.todos.length) {
-      dispatch(removeList({list}));
+      dispatch(removeList({ list }));
       return;
     }
     // confirm deletion if list has todos
     dispatch(openConfirmationDialog({
-      onSubmit: () => dispatch(removeList({list})),
+      onSubmit: () => dispatch(removeList({ list })),
       message: `${list.name} will be permanently deleted`
     }));
   }

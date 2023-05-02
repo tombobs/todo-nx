@@ -1,9 +1,9 @@
-import {ITodo} from '@todo-nx/interfaces';
-import {TodoListItem} from '../todo-list-item/todo-list-item';
+import { ITodo } from '@todo-nx/interfaces';
+import { TodoListItem } from '../todo-list-item/todo-list-item';
 import styles from './todo-detail.module.scss';
-import {IconButton, Paper, TextField} from '@mui/material';
-import {DateTime} from 'luxon';
-import {Delete, ChevronRight} from '@mui/icons-material';
+import { IconButton, Paper, TextField } from '@mui/material';
+import { DateTime } from 'luxon';
+import { ChevronRight, Delete } from '@mui/icons-material';
 
 export interface TodoDetailProps {
   activeTodo?: ITodo;
@@ -32,7 +32,8 @@ export function TodoDetail({
       </div>
 
       <Paper>
-        <TodoListItem item={activeTodo} toggleComplete={toggleComplete} toggleStar={toggleStar} isActive={false}/>
+        <TodoListItem item={activeTodo} toggleComplete={toggleComplete} toggleStar={toggleStar}
+                      isActive={false}/>
       </Paper>
 
       <Paper>
@@ -44,7 +45,8 @@ export function TodoDetail({
       <div className={styles.bottom}>
         <div>
           <span className={styles.label}>Created:</span>
-          <span className={styles.created}>{activeTodo && DateTime.fromISO(activeTodo?.createdAt!).toRelative()}</span>
+          <span
+            className={styles.created}>{activeTodo && DateTime.fromISO(activeTodo?.createdAt!).toRelative()}</span>
         </div>
 
         <IconButton onClick={() => confirmDelete(activeTodo!)}>
