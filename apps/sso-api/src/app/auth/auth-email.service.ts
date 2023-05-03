@@ -1,8 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { EmailService } from '../email/email.service';
 import { IUser } from '@todo-nx/interfaces';
-import { SignupWelcome } from '../email/templates/signup-welcome';
-import { PasswordResetEmail } from '../email/templates/password-reset.email';
+import { EmailService, PasswordResetEmail, SignupWelcome } from '@todo-nx/email';
 
 @Injectable()
 export class AuthEmailService {

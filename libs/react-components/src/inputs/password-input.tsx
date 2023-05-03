@@ -2,6 +2,7 @@ import { TextField } from '@mui/material';
 import { InputProps } from './shared/input-props.interface';
 import { InputError } from './shared/input-error';
 import { passwordMinLength, titleCase } from '@todo-nx/utils';
+import styles from './shared/inputs.module.scss';
 
 export function PasswordInput({ errors, register, formKey, label, pattern }: InputProps<any>) {
   formKey = formKey ?? 'password';
@@ -16,7 +17,7 @@ export function PasswordInput({ errors, register, formKey, label, pattern }: Inp
 
 
   return (
-    <>
+    <div className={styles.marginTop}>
       <TextField placeholder={label} fullWidth type='password' error={!!errors[formKey]} {...register(formKey, {
         required: true,
         minLength: passwordMinLength,
@@ -25,6 +26,6 @@ export function PasswordInput({ errors, register, formKey, label, pattern }: Inp
 
       <InputError errors={errors} formKey={formKey}>{errorMessage}</InputError>
 
-    </>
+    </div>
   );
 }

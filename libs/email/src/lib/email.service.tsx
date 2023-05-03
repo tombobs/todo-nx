@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { IMail } from '@todo-nx/interfaces';
 import { createTransport, Transporter } from 'nodemailer';
 import SMTPTransport from 'nodemailer/lib/smtp-transport';
@@ -38,6 +38,8 @@ export class EmailService {
   }
 
   async verify(): Promise<boolean> {
+    Logger.log('verifying SMTP');
+    console.log(process.env.SMTP_USER)
     return new Promise((resolve => {
       this.transporter.verify(error => {
         if (error) {
@@ -45,6 +47,7 @@ export class EmailService {
           throw new Error(`failed to connect to SMTP server ${error}`,);
         }
         resolve(!error);
+        Logger.log('verified SMTP working')
       });
     }));
   }

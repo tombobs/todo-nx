@@ -16,7 +16,7 @@ import { IconButton, Paper, Popover, TextField } from '@mui/material';
 import { useState } from 'react';
 import { ListSettings } from '../../list/settings/list-settings';
 import { ChevronRight } from '@mui/icons-material';
-import { usePrevious } from '../../../utils';
+import { usePrevious } from '@todo-nx/react-components';
 
 export function Header() {
   const activeList = useSelector(activeListSelector);

@@ -6,9 +6,9 @@ import { User } from './entities/user.entity';
 import { JwtModule } from '@nestjs/jwt';
 import { LocalStrategy } from './strategies/local/local.strategy';
 import { jwtModuleOptions, JwtStrategy } from '@todo-nx/authentication-api';
-import { EmailModule } from '../email/email.module';
 import { AuthEmailService } from './auth-email.service';
 import { ResetPasswordToken } from './entities/reset-password-token.entity';
+import { EmailModule, EmailService } from '@todo-nx/email';
 
 @Module({
   imports: [
@@ -17,7 +17,7 @@ import { ResetPasswordToken } from './entities/reset-password-token.entity';
     EmailModule
   ],
   controllers: [AuthController],
-  providers: [AuthService, LocalStrategy, JwtStrategy, AuthEmailService]
+  providers: [AuthService, LocalStrategy, JwtStrategy, AuthEmailService, EmailService]
 })
 export class AuthModule {
 }

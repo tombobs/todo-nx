@@ -63,6 +63,7 @@ export class AuthService {
       code: User.getCode()
     };
     await this.save(user);
+    await this.authEmailService.sendWelcomeEmail(user);
     return this.login({ email: user.email, password: user.password });
   }
 

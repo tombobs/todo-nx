@@ -47,7 +47,7 @@ export function Sidebar({ toggleExpand, isExpanded }: SidebarProps) {
         )}
       </List>
 
-      <NavLink to={environment.ssoUrl} style={{ whiteSpace: 'nowrap' }}>
+      <NavLink to={environment.ssoUiUrl + '/profile'} style={{ whiteSpace: 'nowrap' }}>
         <ListItemButton sx={{ whiteSpace: 'nowrap', background: 'black', color: 'white' }}>
           <ListItemIcon>
             <Person sx={{ color: 'white' }}/>

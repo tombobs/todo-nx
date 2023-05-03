@@ -17,6 +17,9 @@ export class User extends AbstractEntity implements IUser {
   @Column()
   password?: string;
 
+  @Column({ default: '' })
+  profilePhotoUrl: string;
+
   @Column({ default: false })
   accountVerified: boolean;
 

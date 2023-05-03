@@ -1,7 +1,7 @@
 import styles from './dialog-page.module.scss';
 
 export interface DialogPageProps {
-  title: string;
+  title?: string;
   children: any;
   width?: string;
 }
@@ -13,7 +13,7 @@ export function DialogPage({title, children, width}: DialogPageProps) {
   return (
     <div className={styles.container}>
       <div className={styles.content} style={{width}}>
-        <h3>{title}</h3>
+        {title && <h3>{title}</h3>}
 
         {children}
       </div>

@@ -12,3 +12,4 @@ export * from './lib/auth/verify-request.interface';
 export * from './lib/auth/verify-response.interface';
 export * from './lib/auth/reset-password.interface'
 
+export * from './lib/ui-environment.interface'

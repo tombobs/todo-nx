@@ -8,7 +8,6 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
-
 const globalPrefix = process.env.SSO_API_URL_PREFIX;
 
 async function bootstrap() {

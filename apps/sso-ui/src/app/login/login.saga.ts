@@ -35,6 +35,7 @@ function* loginErrorSaga({ payload }: PayloadAction<AxiosError>) {
 }
 
 function* loginSuccessSaga({ payload }: PayloadAction<ILoginResponse>) {
+  localStorage.setItem(environment.accessTokenKey, payload.accessToken);
   // redirect to app
   location.href = `${environment.appUrl}?accessToken=${payload.accessToken}`;
 }

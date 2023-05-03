@@ -2,6 +2,7 @@ import { TextField } from '@mui/material';
 import { InputProps } from './shared/input-props.interface';
 import { InputError } from './shared/input-error';
 import { titleCase } from '@todo-nx/utils';
+import styles from './shared/inputs.module.scss';
 
 export const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -19,13 +20,13 @@ export function EmailInput({errors, register, formKey, label}: InputProps<any>) 
   }
 
   return (
-    <>
-      <TextField placeholder={label} fullWidth error={!!errors[formKey]} {...register(formKey, {
+    <div className={styles.marginTop}>
+      <TextField label={label} InputLabelProps={{ shrink: true }} fullWidth error={!!errors[formKey]} {...register(formKey, {
         required: true,
         pattern: emailRegex
       })}/>
 
       <InputError errors={errors} formKey={formKey}>{errorMessage}</InputError>
-    </>
+    </div>
   );
 }

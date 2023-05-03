@@ -1,40 +1,41 @@
-import axios from 'axios';
-import { environment } from '../../environments/environment';
+import { HttpUtils } from '@todo-nx/utils';
 import {
   ICheckTokenRequest,
   ILoginRequest,
   ILoginResponse,
   IRegisterRequest,
-  IRequestPasswordResetRequest, IResetPasswordRequest,
+  IRequestPasswordResetRequest, IResetPasswordRequest, IUser,
   IVerifyRequest,
   IVerifyResponse
 } from '@todo-nx/interfaces';
+import { environment } from '../../environments/environment';
+
+const http = new HttpUtils(environment);
 
 export async function apiVerify({ email, code }: IVerifyRequest): Promise<IVerifyResponse> {
-  return apiPost('/auth/verify', { email, code });
+  return http.ssoPost('auth/verify', { email, code });
 }
 
 export async function apiRegister({ email, password }: IRegisterRequest): Promise<ILoginResponse> {
-  return apiPost('/auth/register', { email, password });
+  return http.ssoPost('auth/register', { email, password });
 }
 
 export async function apiLogin({ email, password }: ILoginRequest): Promise<ILoginResponse> {
-  return apiPost('/auth/login', { email, password });
+  return http.ssoPost('auth/login', { email, password });
 }
 
 export async function apiRequestPasswordReset({ email }: IRequestPasswordResetRequest): Promise<void> {
-  return apiPost('/auth/request-password-reset', { email });
+  return http.ssoPost('auth/request-password-reset', { email });
 }
 
 export async function apiCheckResetToken({ token, userId }: ICheckTokenRequest): Promise<void> {
-  return apiPost('/auth/check-password-reset-token', { token, userId });
+  return http.ssoPost('auth/check-password-reset-token', { token, userId });
 }
 
 export async function apiResetPassword({ token, userId, password }: IResetPasswordRequest): Promise<void> {
-  return apiPost('/auth/reset-password', { token, userId, password });
+  return http.ssoPost('auth/reset-password', { token, userId, password });
 }
 
-async function apiPost<T>(url: string, data: any): Promise<T> {
-  const res = await axios.post<T>(environment.ssoApiUrl + url, data);
-  return res.data;
+export async function apiGetProfile(): Promise<IUser> {
+  return http.ssoGet('auth/profile');
 }

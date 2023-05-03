@@ -14,3 +14,4 @@ export * from './loading-wrapper/loading-wrapper';
 export * from './password-strength-indicator/password-strength-indicator'
 
 export * from './inputs';
+export * from './hooks';

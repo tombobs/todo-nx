@@ -20,4 +20,9 @@ export class EmailController {
     const user = { name, email } as IUser;
     return this.emailService.renderReactEmail(PasswordResetEmail, { user, tokenId });
   }
+
+  @Get('verify')
+  verify() {
+    return this.emailService.verify();
+  }
 }

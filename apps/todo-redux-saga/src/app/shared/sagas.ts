@@ -20,7 +20,7 @@ function* apiErrorSaga(action: PayloadAction<AxiosError>) {
   debugger;
   switch (action.payload.response?.status) {
     case 401:
-      return location.href = environment.ssoUrl;
+      return location.href = environment.ssoApiUrl;
     default:
       yield put(showErrorSnackbar({message: 'Sorry - something went wrong'}));
   }

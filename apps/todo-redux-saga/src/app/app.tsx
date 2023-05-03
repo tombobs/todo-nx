@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Routes, useSearchParams } from 'react-router-dom';
+import { Routes } from 'react-router-dom';
 import { Route } from 'react-router';
 import { Layout } from './layout/layout';
 import { Todo } from './todo/todo';
@@ -8,25 +8,21 @@ import './app.module.scss';
 import { useDispatch } from 'react-redux';
 import { loadLists } from './todo/todo-store';
 import { environment } from '../environments/environment';
-import { checkToken } from '../utils';
+import { AuthState, useAuth } from '@todo-nx/react-components';
+
 
 function App() {
-
-  const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();
+  const {authState, redirectToLogin} = useAuth(environment);
 
   useEffect(() => {
-    let token = searchParams.get(environment.tokenStorageKey);
-    if (token) {
-      localStorage.setItem(environment.tokenStorageKey, token);
-      setSearchParams({});
-    } else {
-      token = localStorage.getItem(environment.tokenStorageKey);
+    if (authState === AuthState.Valid) {
+      dispatch(loadLists())
     }
-
-    checkToken(token!);
-    dispatch(loadLists());
-  }, [dispatch]);
+    if (authState === AuthState.Invalid) {
+      redirectToLogin();
+    }
+  }, [authState]);
 
   return (
     <Routes>

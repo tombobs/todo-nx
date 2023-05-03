@@ -1,8 +1,9 @@
-// This file can be replaced during build by using the `fileReplacements` array.
-// When building for production, this file is replaced with `environment.prod.ts`.
+import { IUIEnvironment } from '@todo-nx/interfaces';
 
-export const environment = {
+export const environment: IUIEnvironment = {
   production: false,
   ssoApiUrl: 'http://localhost:3030/api',
-  appUrl: 'http://localhost:4200'
+  appUrl: 'http://localhost:4200',
+  accessTokenKey: 'accessToken',
+  ssoUiUrl: 'http://localhost:42069'
 };

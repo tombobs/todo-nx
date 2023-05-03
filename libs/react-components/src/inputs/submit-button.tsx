@@ -15,11 +15,12 @@ const defaults: Partial<SubmitButtonProps> = {
 export function SubmitButton({ children, disabled, maxWidth, loading }: SubmitButtonProps) {
 
   maxWidth = maxWidth ?? defaults.maxWidth;
+
   return (
-    <LoadingWrapper loading={loading!}>
-      <Button variant={'contained'} className='login-btn'
+    <Button variant={'contained'} className='login-btn'
               type='submit' fullWidth disabled={loading! || disabled}
-              sx={{ marginTop: '10px', minHeight: '25px', maxWidth }}>{children}</Button>
-    </LoadingWrapper>
+              sx={{ marginTop: '10px', minHeight: '25px', maxWidth }}>
+      <LoadingWrapper loading={loading!}>{children}</LoadingWrapper>
+    </Button>
   );
 }
