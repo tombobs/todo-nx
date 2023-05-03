@@ -1,8 +1,8 @@
 import { Column, Entity, OneToMany } from 'typeorm';
 import { genSalt, hash } from 'bcrypt';
-import { AbstractEntity } from './abstract.entity';
+import { AbstractEntity } from '../auth/entities/abstract.entity';
 import { IUser } from '@todo-nx/interfaces';
-import { ResetPasswordToken } from './reset-password-token.entity';
+import { ResetPasswordToken } from '../auth/entities/reset-password-token.entity';
 
 const saltRounds = 10;
 
