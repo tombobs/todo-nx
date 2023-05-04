@@ -17,17 +17,14 @@ export interface TodoListItemProps {
 export function TodoListItem({ item, toggleComplete, toggleStar, click, opaqueComplete, isActive }: TodoListItemProps) {
 
   const checkboxRef = useRef<HTMLButtonElement>(null);
-
   function onToggleComplete(e: ChangeEvent, todo: ITodo): void {
     e.preventDefault();
     toggleComplete(todo);
   }
-
   function onToggleStar(e: MouseEvent, todo: ITodo): void {
     e.stopPropagation();
     toggleStar(todo);
   }
-
   function onClick(e: MouseEvent): void {
     if (!checkboxRef.current!.contains(e.target as Node)) {
       click && click(item!);
@@ -54,7 +51,6 @@ export function TodoListItem({ item, toggleComplete, toggleStar, click, opaqueCo
           <ListItemText primary={item?.title}/>
 
         </ListItemButton>
-
       </ListItem>
     </Paper>
   );

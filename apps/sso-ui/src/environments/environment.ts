@@ -5,5 +5,6 @@ export const environment: IUIEnvironment = {
   ssoApiUrl: 'http://localhost:3030/api',
   appUrl: 'http://localhost:4200',
   accessTokenKey: 'accessToken',
-  ssoUiUrl: 'http://localhost:42069'
+  ssoUiUrl: 'http://localhost:42069',
+  avatarPath: 'https://profile-photos.eu-central-1.linodeobjects.com/'
 };

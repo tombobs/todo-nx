@@ -8,7 +8,7 @@ export const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.
 
 export const uniqueEmailValidationKey = 'unique';
 
-export function EmailInput({errors, register, formKey, label}: InputProps<any>) {
+export function EmailInput({errors, register, formKey, label, defaultValue}: InputProps<any>) {
   formKey = formKey ?? 'email';
   label = label ?? titleCase(formKey);
 
@@ -21,7 +21,7 @@ export function EmailInput({errors, register, formKey, label}: InputProps<any>) 
 
   return (
     <div className={styles.marginTop}>
-      <TextField label={label} InputLabelProps={{ shrink: true }} fullWidth error={!!errors[formKey]} {...register(formKey, {
+      <TextField label={label} InputLabelProps={{ shrink: true }} fullWidth defaultValue={defaultValue} error={!!errors[formKey]} {...register(formKey, {
         required: true,
         pattern: emailRegex
       })}/>

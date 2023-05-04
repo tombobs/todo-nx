@@ -3,6 +3,7 @@ import { genSalt, hash } from 'bcrypt';
 import { AbstractEntity } from '../auth/entities/abstract.entity';
 import { IUser } from '@todo-nx/interfaces';
 import { ResetPasswordToken } from '../auth/entities/reset-password-token.entity';
+import { LoginEntity } from '../auth/entities/login.entity';
 
 const saltRounds = 10;
 
@@ -18,7 +19,7 @@ export class User extends AbstractEntity implements IUser {
   password?: string;
 
   @Column({ default: '' })
-  profilePhotoUrl: string;
+  profilePhotoKey: string;
 
   @Column({ default: false })
   accountVerified: boolean;
@@ -28,6 +29,9 @@ export class User extends AbstractEntity implements IUser {
 
   @OneToMany('ResetPasswordToken', 'user')
   resetPasswordTokens: ResetPasswordToken[];
+
+  @OneToMany('LoginEntity', 'user')
+  loginHistory: LoginEntity[];
 
   static async hashPassword(plainTextPassword: string): Promise<string> {
     return hash(plainTextPassword, await genSalt(saltRounds));

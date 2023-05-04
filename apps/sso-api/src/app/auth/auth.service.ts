@@ -1,11 +1,11 @@
 import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { User } from './entities/user.entity';
+import { User } from '../user/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { compare } from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import {
-  ICheckTokenRequest,
+  ICheckTokenRequest, ILogin,
   ILoginRequest,
   ILoginResponse,
   IRequestPasswordResetRequest,
@@ -15,11 +15,13 @@ import {
 } from '@todo-nx/interfaces';
 import { AuthEmailService } from './auth-email.service';
 import { ResetPasswordToken } from './entities/reset-password-token.entity';
+import { LoginEntity } from './entities/login.entity';
 
 @Injectable()
 export class AuthService {
   constructor(@InjectRepository(User) private usersRepository: Repository<IUser>,
               @InjectRepository(ResetPasswordToken) private resetPasswordTokenRepository: Repository<IResetPasswordToken>,
+              @InjectRepository(LoginEntity) private loginHistoryRepository: Repository<ILogin>,
               private authEmailService: AuthEmailService,
               private jwtService: JwtService) {
   }
@@ -46,9 +48,13 @@ export class AuthService {
     return !!(await this.usersRepository.findOne({ where: { email: user.email } }));
   }
 
-  async login(formValue: ILoginRequest): Promise<ILoginResponse> {
-    const user = await this.validate(formValue);
+  async login({email, password}: ILoginRequest, ipAddress: string): Promise<ILoginResponse> {
+    const user = await this.validate({email, password});
     const accessToken = this.jwtService.sign({ user });
+    const login = await this.loginHistoryRepository.create()
+    login.user = user;
+    login.ipAddress = ipAddress;
+    await this.loginHistoryRepository.save(login);
     return { accessToken };
   }
 
@@ -64,7 +70,7 @@ export class AuthService {
     };
     await this.save(user);
     await this.authEmailService.sendWelcomeEmail(user);
-    return this.login({ email: user.email, password: user.password });
+    return this.login({ email: user.email, password: user.password }, ipAddress);
   }
 
   async verifyAccount(email: string, code: string): Promise<{ verified: boolean }> {

@@ -7,4 +7,6 @@ export interface InputProps<T extends FieldValues> {
   required?: boolean;
   label?: string;
   pattern?: string;
+  onChange?: any;
+  defaultValue?: any;
 }

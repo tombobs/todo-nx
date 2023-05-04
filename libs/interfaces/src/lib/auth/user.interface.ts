@@ -7,5 +7,5 @@ export interface IUser {
   password?: string;
   code?: string;
   accountVerified?: boolean;
-  profilePhotoUrl?: string;
+  profilePhotoKey?: string;
 }

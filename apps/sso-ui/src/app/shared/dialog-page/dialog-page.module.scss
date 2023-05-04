@@ -2,18 +2,19 @@
   background-image: url('//assets.tom-roberts.dev/register-bg.png');
   background-size: cover;
   display: flex;
-  align-items: center;
+  padding: 10% 0;
   justify-content: center;
+  position: relative;
 }
 
 .content {
   border: 1px solid black;
   background: white;
   width: auto;
-  margin: auto;
   padding: 30px;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: max-content;
 }

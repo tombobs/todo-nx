@@ -19,6 +19,7 @@
       "@todo-nx/email": ["libs/email/src/index.ts"],
       "@todo-nx/interfaces": ["libs/interfaces/src/index.ts"],
       "@todo-nx/react-components": ["libs/react-components/src/index.ts"],
+      "@todo-nx/s3-api": ["libs/s3-api/src/index.ts"],
       "@todo-nx/theme": ["libs/theme/src/index.ts"],
       "@todo-nx/utils": ["libs/utils/src/index.ts"]
     }

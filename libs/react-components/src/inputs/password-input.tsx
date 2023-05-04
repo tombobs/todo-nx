@@ -13,6 +13,9 @@ export function PasswordInput({ errors, register, formKey, label, pattern }: Inp
     case 'pattern':
       errorMessage = 'Passwords must match'
       break;
+    case 'current':
+      errorMessage = 'Current password is incorrect'
+      break;
   }
 
 

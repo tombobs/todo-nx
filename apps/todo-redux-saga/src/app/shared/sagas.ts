@@ -17,7 +17,7 @@ export function* rootSaga() {
 }
 
 function* apiErrorSaga(action: PayloadAction<AxiosError>) {
-  debugger;
+  console.error(action.payload)
   switch (action.payload.response?.status) {
     case 401:
       return location.href = environment.ssoApiUrl;

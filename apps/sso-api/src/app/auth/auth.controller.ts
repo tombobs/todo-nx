@@ -29,17 +29,12 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   async login(@Body() body: ILoginRequest,
               @Headers('x-real-ip') ipAddress: string) {
-    return this.authService.login(body);
+    return this.authService.login(body, ipAddress);
   }
 
-  @Get('profile')
-  @UseGuards(JwtAuthGuard)
-  async profile(@UserFromToken() user: IUser) {
-    return this.authService.findOne(user.email);
-  }
 
   @Post('register')
-  async register(@Body() user: IUser, @Ip() ipAddress: string) {
+  async register(@Body() user: IUser, @Headers('x-real-ip') ipAddress: string) {
     return this.authService.register(user, ipAddress);
   }
 

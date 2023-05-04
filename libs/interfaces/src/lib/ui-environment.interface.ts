@@ -5,4 +5,5 @@ export interface IUIEnvironment {
   apiUrl?: string;
   accessTokenKey: 'accessToken';
   ssoUiUrl: string;
+  avatarPath?: string;
 }

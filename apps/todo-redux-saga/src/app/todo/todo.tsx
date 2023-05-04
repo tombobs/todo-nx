@@ -18,7 +18,7 @@ import { useNavigate } from 'react-router-dom';
 import { ITodo, listThemes } from '@todo-nx/interfaces';
 import styles from './todo.module.scss';
 import { TodoDetail } from './components/todo-detail/todo-detail';
-import { openConfirmationDialog } from '../../../../../libs/react-components/src/confirmation-dialog/confirmation-dialog.store';
+import { openConfirmationDialog } from '@todo-nx/react-components';
 
 
 export function Todo() {

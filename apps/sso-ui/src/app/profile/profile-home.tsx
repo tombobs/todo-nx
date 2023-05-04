@@ -1,16 +1,13 @@
-import { Route, Routes, Outlet, useLocation, Link } from 'react-router-dom';
-import { AuthState, useAuth } from '@todo-nx/react-components';
+import { Link, Outlet, useLocation } from 'react-router-dom';
+import { AuthState, LoadingWrapper, useAuth } from '@todo-nx/react-components';
 import { environment } from '../../environments/environment';
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { loadProfile } from './profile.store';
-import { Profile } from './profile';
-import { LoginHistory } from './login-history/login-history';
-import { ProfileApps } from './my-apps/profile-apps';
+import { useDispatch, useSelector } from 'react-redux';
+import { loadProfile, profileSelector, resetError } from './profile.store';
 import { DialogPage } from '../shared/dialog-page/dialog-page';
-import { Tab, Tabs } from '@mui/material';
+import { LinearProgress, Tab, Tabs } from '@mui/material';
 import { profileRoutes } from './profile.routes';
-import { set } from 'react-hook-form';
+import styles from './profile-home.module.scss';
 
 export function ProfileHome() {
 
@@ -18,6 +15,7 @@ export function ProfileHome() {
   const dispatch = useDispatch();
   const location = useLocation();
   const [profilePath, setProfilePath] = useState<string>('');
+  const {  updating } = useSelector(profileSelector);
 
   useEffect(() => {
     if (authState === AuthState.Valid) {
@@ -35,19 +33,27 @@ export function ProfileHome() {
     }
   }, [])
 
+  function onTabChange(_e: any, path: string): void {
+    dispatch(resetError());
+    setProfilePath(path);
+  }
 
   return (
-    <DialogPage width={'auto'}>
+    <DialogPage width={'612px'}>
+      <LoadingWrapper loading={authState !== AuthState.Valid} color='black'>
+        <div className={styles.loadingContainer}>
+          {updating && <LinearProgress sx={{ height: '100%', width: '100%'}} />}
+        </div>
 
-      <Tabs value={profilePath}
-        onChange={(e, p) => setProfilePath(p)}>
-        {profileRoutes.map((r, i) =>
-          <Tab label={r.label} value={r.path} key={i} component={Link} to={r.path} />
-        )}
-      </Tabs>
+        <Tabs value={profilePath}
+          onChange={onTabChange}>
+          {profileRoutes.map((r, i) =>
+            <Tab label={r.label} value={r.path} key={i} component={Link} to={r.path} />
+          )}
+        </Tabs>
 
-      <Outlet />
-
+        <Outlet />
+      </LoadingWrapper>
     </DialogPage>
   );
 }

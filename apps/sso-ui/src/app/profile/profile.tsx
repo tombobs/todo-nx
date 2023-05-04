@@ -1,30 +1,49 @@
-import { EmailInput, ProfilePhotoInput, TextInput } from '@todo-nx/react-components';
-import { useForm } from 'react-hook-form';
+import { EmailInput, LoadingWrapper, ProfilePhotoInput, TextInput } from '@todo-nx/react-components';
+import { useForm, useFormContext, useWatch } from 'react-hook-form';
 import { IUser } from '@todo-nx/interfaces';
 import { useDispatch, useSelector } from 'react-redux';
-import { profileSelector } from './profile.store';
-import { useEffect } from 'react';
-import { Avatar } from '@mui/material';
+import { profileSelector, updateProfile, updateProfilePhoto } from './profile.store';
+import { FormEvent, useEffect } from 'react';
+import debounce from 'lodash.debounce';
+import { KeysOfAType } from 'typeorm';
+import { getDiff } from '@todo-nx/utils';
+import { environment } from '../../environments/environment';
+
+const useFormValues = () => {
+  const { getValues } = useFormContext();
+
+  return {
+    ...useWatch(), // subscribe to form value updates
+    ...getValues(), // always merge with latest form values
+  }
+}
 
 export function Profile() {
-  const { register, setValue, watch, formState: { errors } } = useForm<IUser>();
+  const { register, setValue, handleSubmit , trigger, getValues, formState: { isDirty, errors } } = useForm<IUser>();
   const dispatch = useDispatch();
-
-  const {profile} = useSelector(profileSelector);
+  const { profile, loading } = useSelector(profileSelector);
 
   useEffect(() => {
-    setValue('email', profile?.email!);
     setValue('name', profile?.name!);
-  }, [profile])
+    setValue('email', profile?.email!);
+  }, [profile]);
 
-  watch((a: any,b: any) => console.log(a,b))
+  function handleChange(_e: FormEvent) {
+    const update = getDiff<IUser>(profile as IUser, getValues());
+    if (update) {
+      dispatch(updateProfile(update))
+    }
+  }
 
   return (
-    <form style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%'}}>
-      <EmailInput register={register} errors={errors} />
-      <TextInput register={register} errors={errors} formKey='name' />
+    <LoadingWrapper loading={loading} color='black' size={50}>
+      <form onChange={debounce(handleChange, 300)} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '70%', paddingTop: '20px' }}>
 
-      <ProfilePhotoInput register={register} errors={errors}/>
-    </form>
+        <EmailInput register={register} errors={errors}/>
+        <TextInput register={register} errors={errors} formKey="name"/>
+
+        <ProfilePhotoInput avatarKey={profile?.profilePhotoKey && environment.avatarPath! + profile?.profilePhotoKey} onChange={v => dispatch(updateProfilePhoto(v.target.files[0]))} />
+      </form>
+    </LoadingWrapper>
   );
 }
