@@ -7,20 +7,23 @@ import { ChevronRight } from '@mui/icons-material';
 interface IApp {
   label: string;
   description: string;
+  imageName: string;
 }
 
 const apps: IApp[] = [
-  {label: 'Todo-redux-saga', description: 'a todo list application using redux-saga'}
+  {label: 'Todo-redux-saga', description: 'a todo list application using redux-saga', imageName: 'todo-redux-saga.png'}
 ]
 
 export function ProfileApps() {
   return (
     <div className={styles.container}>
-      {apps.map(a =>
+      {apps.map((app: IApp) =>
         <div className={styles.app}>
           <div className={styles.label}>
-            <div>{a.label}</div>
-            <div className={styles.description}>{a.description}</div>
+            <div>{app.label}</div>
+            <div className={styles.description}>{app.description}</div>
+
+            <img style={{marginTop: '5px'}} src={`/assets/images/${app.imageName}`} alt='Screenshot of todo redux saga application'/>
           </div>
 
           <Button href={environment.appUrl} component={Link} variant='contained'>

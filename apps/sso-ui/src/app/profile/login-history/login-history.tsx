@@ -18,7 +18,7 @@ export function LoginHistory() {
 
   return (
     <LoadingWrapper loading={!loginHistory || loadingLoginHistory} color="black">
-      <TableContainer sx={{border: '1px solid grey', borderRadius: '5px', marginTop: '10px'}}>
+      <TableContainer sx={{border: '1px solid grey', borderRadius: '5px', marginTop: '20px'}}>
         <Table>
           <TableHead>
             <TableRow>

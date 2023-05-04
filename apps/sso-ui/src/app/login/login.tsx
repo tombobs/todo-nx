@@ -10,7 +10,6 @@ export function Login() {
     <div className={styles.content}>
 
       <div className={styles.left}>
-        <Banner/>
         <div className={styles.formContainer}>
           <h1 className={styles.title}>Login</h1>
           <p>Securely access your account.</p>

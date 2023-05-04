@@ -11,7 +11,9 @@ export function Logout() {
   const navigate = useNavigate();
 
   return (
-    <div style={{paddingTop: '20px'}}>
+    <div style={{paddingTop: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+      <h4>You will be logged out of all applications</h4>
+
       <Button variant='contained' disabled={loggingOut} onClick={() => dispatch(logout({navigate}))} style={{width: '150px'}}>
         <LoadingWrapper loading={loggingOut}>
           Logout

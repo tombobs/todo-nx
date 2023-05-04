@@ -15,7 +15,8 @@ export function Banner() {
       borderRadius: '5px',
       display: 'flex',
       alignItems: 'center',
-      background: 'white'
+      background: 'white',
+      zIndex: 1
     }}>
       <EmojiPeople/>
       <div style={ { marginLeft: '5px' } }>tom-roberts.dev</div>

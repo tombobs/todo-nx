@@ -37,7 +37,7 @@ export function Profile() {
 
   return (
     <LoadingWrapper loading={loading} color='black' size={50}>
-      <form onChange={debounce(handleChange, 300)} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '70%', paddingTop: '20px' }}>
+      <form onChange={debounce(handleChange, 300)} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '70%', paddingTop: '10px' }}>
 
         <EmailInput register={register} errors={errors}/>
         <TextInput register={register} errors={errors} formKey="name"/>
