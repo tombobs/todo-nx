@@ -1,6 +1,4 @@
-import { IUIEnvironment } from '@todo-nx/interfaces';
-import axios, { CancelToken, CancelTokenSource } from 'axios';
-import { CANCEL } from 'redux-saga'
+import axios from 'axios';
 
 export class HttpUtils {
 
@@ -30,9 +28,9 @@ export class HttpUtils {
 }
 
 export class UiHttpUtils extends HttpUtils {
-  private readonly environment: IUIEnvironment;
+  private readonly environment: any;
 
-  constructor(environment: IUIEnvironment) {
+  constructor(environment: any) {
     super();
     this.environment = environment;
   }

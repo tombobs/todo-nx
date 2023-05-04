@@ -11,7 +11,8 @@
     "build:sso-ui": "nx build sso-ui",
     "start:sso-api": "nx serve sso-api",
     "build:sso-api": "nx build sso-api",
-    "build:interfaces": "nx build interfaces"
+    "build:interfaces": "nx build interfaces",
+    "nx:graph": "nx graph"
   },
   "private": true,
   "dependencies": {
@@ -115,5 +116,11 @@
     "ts-node": "10.9.1",
     "typescript": "~4.9.5",
     "url-loader": "^4.1.1"
+  },
+  "overrides": {
+    "react-html-email": {
+      "react": "18",
+      "react-dom": "18"
+    }
   }
 }

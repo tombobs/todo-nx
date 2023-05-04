@@ -1,4 +1,5 @@
-import { IAbstractEntity, IUser } from '@todo-nx/interfaces';
+import { IUser } from './user.interface';
+import { IAbstractEntity } from '../abstract-entity.interface';
 
 export interface IResetPasswordToken extends IAbstractEntity {
   valid: boolean;
