@@ -31,7 +31,7 @@ export function ProfileHome() {
     if (profileRoutes.find(p => p.path === lastPartOfPath)) {
       setProfilePath(lastPartOfPath);
     }
-  }, [])
+  }, []);
 
   function onTabChange(_e: any, path: string): void {
     dispatch(resetError());

@@ -1,9 +1,14 @@
 export interface IUIEnvironment {
   production: boolean;
   ssoApiUrl: string;
-  appUrl: string;
-  apiUrl?: string;
-  accessTokenKey: 'accessToken';
+  todoReduxSagaAppUrl: string;
+  todoApiUrl?: string;
+  accessTokenKey: string;
   ssoUiUrl: string;
-  avatarPath?: string;
+  avatarPath: string;
 }
+
+export const baseEnvironment: IUIEnvironment = {
+  avatarPath: 'https://profile-photos.eu-central-1.linodeobjects.com/',
+  accessTokenKey: 'accessToken',
+} as IUIEnvironment;

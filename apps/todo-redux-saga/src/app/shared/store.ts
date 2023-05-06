@@ -2,7 +2,10 @@ import { configureStore } from '@reduxjs/toolkit';
 import {
   confirmationDialogStore,
   confirmationDialogStoreKey,
-  IConfirmationDialogState
+  IConfirmationDialogState,
+  ISnackbarState,
+  snackbarStore,
+  snackbarStoreKey,
 } from '@todo-nx/react-components';
 import todoStore, { ITodoState, todoStoreKey } from '../todo/todo-store';
 import createSagaMiddleware from 'redux-saga';
@@ -13,7 +16,8 @@ import { rootSaga } from './sagas';
 export default configureStore({
   reducer: {
     [todoStoreKey]: todoStore.reducer,
-    [confirmationDialogStoreKey]: confirmationDialogStore.reducer
+    [confirmationDialogStoreKey]: confirmationDialogStore.reducer,
+    [snackbarStoreKey]: snackbarStore.reducer,
   },
   middleware: [sagaMiddleware],
 });
@@ -21,9 +25,10 @@ export default configureStore({
 sagaMiddleware.run(rootSaga);
 
 export type State = {
-  [todoStoreKey]: ITodoState,
-  [confirmationDialogStoreKey]: IConfirmationDialogState
-}
+  [todoStoreKey]: ITodoState;
+  [confirmationDialogStoreKey]: IConfirmationDialogState;
+  [snackbarStoreKey]: ISnackbarState;
+};
 
 
 

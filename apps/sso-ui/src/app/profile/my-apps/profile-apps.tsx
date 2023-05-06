@@ -8,10 +8,16 @@ interface IApp {
   label: string;
   description: string;
   imageName: string;
+  url: string;
 }
 
 const apps: IApp[] = [
-  {label: 'Todo-redux-saga', description: 'a todo list application using redux-saga', imageName: 'todo-redux-saga.png'}
+  {
+    label: 'Todo-redux-saga',
+    description: 'a todo list application using redux-saga',
+    imageName: 'todo-redux-saga.png',
+    url: `${environment.todoReduxSagaAppUrl}?${environment.accessTokenKey}=${localStorage.getItem(environment.accessTokenKey!)}`
+  }
 ]
 
 export function ProfileApps() {
@@ -26,7 +32,7 @@ export function ProfileApps() {
             <img style={{marginTop: '5px'}} src={`/assets/images/${app.imageName}`} alt='Screenshot of todo redux saga application'/>
           </div>
 
-          <Button href={environment.appUrl} component={Link} variant='contained'>
+          <Button href={app.url} component={Link} variant='contained'>
             Go to app
             <ChevronRight />
           </Button>

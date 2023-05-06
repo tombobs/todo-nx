@@ -3,6 +3,7 @@ export const routeNames = {
   register: '/register',
   verify: '/verify',
   requestPasswordReset: '/request-password-reset',
+  resetRequested: '/reset-requested',
   resetPassword: '/reset-password',
   profile: '/profile/',
   loginHistory: '/login-history'

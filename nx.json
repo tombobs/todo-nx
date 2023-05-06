@@ -59,10 +59,18 @@
     },
     "@nx/react": {
       "application": {
+        "style": "scss",
+        "linter": "eslint",
+        "bundler": "webpack",
         "babel": true
       },
       "library": {
+        "style": "scss",
+        "linter": "eslint",
         "unitTestRunner": "none"
+      },
+      "component": {
+        "style": "scss"
       }
     },
     "@nx/next": {

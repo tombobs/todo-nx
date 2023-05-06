@@ -1,7 +1,7 @@
-import { createTheme } from '@mui/material'
-import palette from './palette.module.scss'
+import { createTheme, responsiveFontSizes } from '@mui/material';
+import palette from './palette.module.scss';
 
-export const theme = createTheme({
+const _theme = createTheme({
   palette: {
     primary: {
       main: palette.primary,
@@ -10,8 +10,8 @@ export const theme = createTheme({
       main: palette.secondary,
     },
     error: {
-      main: palette.error
-    }
+      main: palette.error,
+    },
   },
   components: {
     MuiLink: {
@@ -25,7 +25,7 @@ export const theme = createTheme({
           paddingBottom: '1px',
           opacity: '0.8',
           '&:hover': {
-            opacity: '1'
+            opacity: '1',
           },
           '&.soft': {
             fontWeight: 'normal',
@@ -35,9 +35,16 @@ export const theme = createTheme({
               borderWidth: '2px',
               fontWeight: 'bold',
             },
-          }
+          },
         },
-      }
-    }
-  }
-})
+      },
+    },
+    MuiButtonBase: {
+      defaultProps: {
+        disableRipple: true,
+      },
+    },
+  },
+});
+
+export const theme = responsiveFontSizes(_theme);

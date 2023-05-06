@@ -34,6 +34,6 @@ export class ListService {
   }
 
   async setListTheme(id: string, theme: IListTheme, user: IUser): Promise<void> {
-    await this.listRepository.update({ id, userId: user.id }, { theme: theme.id });
+    await this.listRepository.update({ id, userId: user.id }, { theme: theme?.id || 0 });
   }
 }

@@ -4,7 +4,7 @@ import { InputError } from './shared/input-error';
 import { titleCase } from '@todo-nx/utils';
 import styles from './shared/inputs.module.scss'
 
-export function TextInput({ errors, register, formKey, required, label }: InputProps<any>) {
+export function TextInput({ errors, register, formKey, required, label, multiline }: InputProps<any>) {
   formKey = formKey ?? 'text';
   label = label ?? titleCase(formKey);
 
@@ -12,7 +12,7 @@ export function TextInput({ errors, register, formKey, required, label }: InputP
 
   return (
     <div className={styles.marginTop}>
-      <TextField label={label} fullWidth error={!!errors[formKey]} InputLabelProps={{ shrink: true }}
+      <TextField multiline={multiline} rows={multiline ? 4 : 1} label={label} fullWidth error={!!errors[formKey]} InputLabelProps={{ shrink: true }}
                  {...register(formKey, { required })}/>
 
       <InputError errors={errors} formKey={formKey}>{errorMessage}</InputError>

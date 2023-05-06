@@ -1,14 +1,15 @@
-import 'react';
 import { IUser } from '@todo-nx/interfaces';
 import { Button } from '@mui/material';
 import { EmailLayout } from './email-layout';
 import { Item } from 'react-html-email';
+import React from 'react';
 
 export type SignupWelcomeProps = {
   user: IUser;
+  ssoUiUrl: string;
 };
 
-export function SignupWelcome({ user }: SignupWelcomeProps) {
+export function SignupWelcome({ ssoUiUrl, user }: SignupWelcomeProps) {
 
   return (
     <EmailLayout title={'Thanks for signing up!'}>
@@ -27,7 +28,7 @@ export function SignupWelcome({ user }: SignupWelcomeProps) {
 
       <Item>
         <Button sx={{ marginTop: '15px' }} variant='contained'
-                href={process.env.SSO_UI_URL + '/verify?code=' + user.code}>Verify your account</Button>
+                href={ssoUiUrl + '/verify?code=' + user.code}>Verify your account</Button>
       </Item>
 
     </EmailLayout>

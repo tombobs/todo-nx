@@ -1,9 +1,14 @@
 import { EmojiPeople } from '@mui/icons-material';
 
-export function Banner() {
+export interface BannerProps {
+  absolutePosition?: boolean;
+}
+
+export function Banner({absolutePosition}: BannerProps) {
+  absolutePosition = absolutePosition ?? true;
   return (
     <div style={{
-      position: 'absolute',
+      position: absolutePosition ? 'absolute' : 'static',
       left: '10px',
       top: '10px',
       fontFamily: 'cursive',
@@ -16,7 +21,8 @@ export function Banner() {
       display: 'flex',
       alignItems: 'center',
       background: 'white',
-      zIndex: 1
+      zIndex: 1,
+      width: '250px'
     }}>
       <EmojiPeople/>
       <div style={ { marginLeft: '5px' } }>tom-roberts.dev</div>

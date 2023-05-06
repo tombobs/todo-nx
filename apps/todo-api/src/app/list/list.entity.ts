@@ -7,10 +7,13 @@ export class ListEntity extends AbstractEntity implements IList {
 
   @Column({ default: 'Untitled list' })
   name: string;
+
   @Column({ default: 0 })
   theme?: number;
+
   @Column({ nullable: false })
   userId: string;
+
   @OneToMany('todo', 'list')
   todos: ITodo[];
 

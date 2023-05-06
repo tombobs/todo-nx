@@ -5,9 +5,10 @@
   display: grid;
   grid-template-areas:
           'sidebar header'
-          'sidebar content';
+          'sidebar content'
+          'sidebar footer';
   grid-template-columns: 55px 1fr;
-  grid-template-rows: 70px 1fr;
+  grid-template-rows: 70px 1fr 50px;
   transition: grid-template-columns var(--transition);
 
   &.sidebarExpanded {
@@ -18,6 +19,7 @@
 .content {
   background: whitesmoke;
   grid-area: content;
+  border-bottom: var(--border);
 }
 
 .header {

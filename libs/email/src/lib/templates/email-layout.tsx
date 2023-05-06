@@ -1,5 +1,5 @@
+import React from 'react';
 import { Box, Email, Item } from 'react-html-email';
-
 
 export function EmailLayout({ children, title }: { children: any, title: string }) {
   return (

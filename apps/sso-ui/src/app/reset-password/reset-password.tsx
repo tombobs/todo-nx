@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { Link as RouterLink, useSearchParams } from 'react-router-dom';
 import { Link } from '@mui/material';
 import { routeNames } from '../shared/route-names';
-import { ResetPasswordForm } from './reset-password-form';
+import { ResetPasswordForm } from './reset-form/reset-password-form';
 
 export function ResetPassword() {
 

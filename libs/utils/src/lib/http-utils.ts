@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { IUIEnvironment } from "@todo-nx/interfaces";
 
 export class HttpUtils {
 
@@ -30,7 +31,7 @@ export class HttpUtils {
 export class UiHttpUtils extends HttpUtils {
   private readonly environment: any;
 
-  constructor(environment: any) {
+  constructor(environment: IUIEnvironment) {
     super();
     this.environment = environment;
   }
@@ -41,19 +42,19 @@ export class UiHttpUtils extends HttpUtils {
 
   /* API */
   async apiGet<T = any>(url: string, params?: any): Promise<T> {
-    return this.get(`${this.environment.apiUrl}/${url}`, params);
+    return this.get(`${this.environment.todoApiUrl}/${url}`, params);
   }
 
   async apiPost<T = any, D = any>(url: string, data: D): Promise<T> {
-    return this.post(`${this.environment.apiUrl}/${url}`, data);
+    return this.post(`${this.environment.todoApiUrl}/${url}`, data);
   }
 
   async apiPut<T = any, D = any>(url: string, data: D): Promise<T> {
-    return this.put(`${this.environment.apiUrl}/${url}`, data);
+    return this.put(`${this.environment.todoApiUrl}/${url}`, data);
   }
 
   async apiDelete<T = any>(url: string, data?: any): Promise<T> {
-    return this.delete(`${this.environment.apiUrl}/${url}`, data);
+    return this.delete(`${this.environment.todoApiUrl}/${url}`, data);
   }
 
   /* SSO */

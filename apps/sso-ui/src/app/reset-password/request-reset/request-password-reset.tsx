@@ -1,7 +1,7 @@
-import { DialogPage } from '../shared/dialog-page/dialog-page';
+import { DialogPage } from '../../shared/dialog-page/dialog-page';
 import { EmailInput, LoadingWrapper, SubmitButton } from '@todo-nx/react-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { requestReset, resetPasswordSelector } from './reset-password.store';
+import { requestReset, resetPasswordSelector } from '../reset-password.store';
 import { useForm } from 'react-hook-form';
 import { IRequestPasswordResetRequest } from '@todo-nx/interfaces';
 import { useNavigate } from 'react-router-dom';

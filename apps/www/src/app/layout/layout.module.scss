@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.top {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+}

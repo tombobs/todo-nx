@@ -12,13 +12,13 @@ export class EmailController {
   @Get('welcome')
   welcome(@Query() { name, email, code }: any) {
     const user = { name, email, code } as IUser;
-    return this.emailService.renderReactEmail(SignupWelcome, { user });
+    return this.emailService.renderReactEmail(SignupWelcome, { user, ssoUiUrl: 'lol' });
   }
 
   @Get('password-reset')
   passwordReset(@Query() { name, email, tokenId }: any) {
     const user = { name, email } as IUser;
-    return this.emailService.renderReactEmail(PasswordResetEmail, { user, tokenId });
+    return this.emailService.renderReactEmail(PasswordResetEmail, { user, tokenId, ssoUiUrl: 'lol' });
   }
 
   @Get('verify')

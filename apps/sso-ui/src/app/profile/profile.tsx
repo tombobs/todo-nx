@@ -1,22 +1,22 @@
-import { EmailInput, LoadingWrapper, ProfilePhotoInput, TextInput } from '@todo-nx/react-components';
-import { useForm, useFormContext, useWatch } from 'react-hook-form';
+import {
+  EmailInput,
+  LoadingWrapper,
+  ProfilePhotoInput,
+  TextInput,
+} from '@todo-nx/react-components';
+import { useForm } from 'react-hook-form';
 import { IUser } from '@todo-nx/interfaces';
 import { useDispatch, useSelector } from 'react-redux';
-import { profileSelector, updateProfile, updateProfilePhoto } from './profile.store';
+import {
+  profileSelector,
+  updateProfile,
+  updateProfilePhoto,
+} from './profile.store';
 import { FormEvent, useEffect } from 'react';
 import debounce from 'lodash.debounce';
-import { KeysOfAType } from 'typeorm';
 import { getDiff } from '@todo-nx/utils';
 import { environment } from '../../environments/environment';
 
-const useFormValues = () => {
-  const { getValues } = useFormContext();
-
-  return {
-    ...useWatch(), // subscribe to form value updates
-    ...getValues(), // always merge with latest form values
-  }
-}
 
 export function Profile() {
   const { register, setValue, handleSubmit , trigger, getValues, formState: { isDirty, errors } } = useForm<IUser>();

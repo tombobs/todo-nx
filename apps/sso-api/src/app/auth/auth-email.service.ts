@@ -9,7 +9,7 @@ export class AuthEmailService {
   }
 
   sendWelcomeEmail(user: IUser): Promise<boolean> {
-    const html = this.emailService.renderReactEmail(SignupWelcome, { user });
+    const html = this.emailService.renderReactEmail(SignupWelcome, { user, ssoUiUrl: this.ssoUiUrl });
     return this.emailService.sendMail({
       subject: '',
       html,
@@ -18,11 +18,15 @@ export class AuthEmailService {
   }
 
   sendPasswordResetEmail(user: IUser, tokenId: string): Promise<boolean> {
-    const html = this.emailService.renderReactEmail(PasswordResetEmail, { user, tokenId });
+    const html = this.emailService.renderReactEmail(PasswordResetEmail, { user, tokenId, ssoUiUrl: this.ssoUiUrl });
     return this.emailService.sendMail({
       subject: 'Reset your password',
       html,
       to: user.email,
     });
+  }
+
+  private get ssoUiUrl(): string {
+    return process.env.SSO_UI_URL!;
   }
 }

@@ -1,6 +1,7 @@
 import { createSlice, Draft, PayloadAction } from '@reduxjs/toolkit';
 import { State } from '../shared/store';
 import { IList, IListTheme, ITodo } from '@todo-nx/interfaces';
+import { AxiosError } from "axios";
 
 export interface ITodoState {
   lists: IList[];
@@ -133,6 +134,10 @@ export const todoStore = createSlice({
       state.lists[index].theme = action.payload.theme?.id;
       state.loading = false;
     },
+    selectListThemeError: (state: Draft<ITodoState>, action: PayloadAction<AxiosError>) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
   }
 });
 
@@ -159,7 +164,8 @@ export const {
   renameList,
   renameListSuccess,
   selectListTheme,
-  selectListThemeSuccess
+  selectListThemeSuccess,
+  selectListThemeError
 } = todoStore.actions;
 
 

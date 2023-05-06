@@ -1,7 +1,6 @@
 .sidebar {
   overflow: hidden;
   grid-area: sidebar;
-  //transform: rotate(360deg);
   border-right: 1px solid black;
   display: flex;
   flex-direction: column;
@@ -28,8 +27,6 @@
       border-top: 1px solid black;
     }
   }
-
-
 }
 
 .active {

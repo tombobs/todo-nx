@@ -1,9 +1,11 @@
-import { IUIEnvironment } from '@todo-nx/interfaces';
+import { baseEnvironment, IUIEnvironment } from '@todo-nx/interfaces';
 
 export const environment: IUIEnvironment = {
+  ...baseEnvironment,
   production: true,
-  appUrl: 'https://todo-redux-saga.tom-roberts.dev',
+
+  ssoUiUrl: 'https://sso.tom-roberts.dev',
   ssoApiUrl: 'https://sso-api.tom-roberts.dev/sso-api',
-  accessTokenKey: 'accessToken',
-  ssoUiUrl: 'https://sso.tom-roberts.dev'
+
+  todoReduxSagaAppUrl: 'https://todo-redux-saga.tom-roberts.dev',
 };

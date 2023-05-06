@@ -1,6 +1,6 @@
 import { LoadingWrapper, PasswordInput, SubmitButton } from '@todo-nx/react-components';
 import { useForm } from 'react-hook-form';
-import { ResetPasswordFormControls } from '../../reset-password/reset-password-form-controls';
+import { ResetPasswordFormControls } from '../../reset-password/reset-form/reset-password-form-controls';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changePassword, profileSelector, resetError } from '../profile.store';

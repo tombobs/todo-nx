@@ -34,15 +34,6 @@ export function Header() {
     setAnchorEl(null);
   }
 
-  // if (previousLoading && !loading) {
-  //   setSaveSuccess(true);
-  // }
-  //
-  // if (loading) {
-  //   setSaveSuccess(false);
-  // }
-
-
   return (
     <div className={styles.header}>
       <Link to='/'>
@@ -100,20 +91,6 @@ export function Header() {
       </div>
 
       <div className={styles.right}>
-        {saveSuccess && <>y</>}
-        {loading && <SyncIcon fontSize={'inherit'} sx={{
-          animation: 'spin 2s linear infinite',
-          '@keyframes spin': {
-            '100%': {
-              transform: 'rotate(0deg)',
-            },
-            '0%': {
-              transform: 'rotate(360deg)',
-            },
-          },
-        }}/>}
-
-        <div className={`${styles.saveIcon} ${previousLoading ? styles.saveOk : ''}`}>lol</div>
 
         {error && <ReportIcon/>}
 

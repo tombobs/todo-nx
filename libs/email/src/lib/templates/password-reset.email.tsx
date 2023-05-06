@@ -1,15 +1,16 @@
-import 'react';
 import { IUser } from '@todo-nx/interfaces';
 import { Button } from '@mui/material';
 import { EmailLayout } from './email-layout';
 import { A, Item } from 'react-html-email';
+import React from 'react';
 
 export type PasswordResetEmailProps = {
   user: IUser;
   tokenId: string;
+  ssoUiUrl: string;
 };
 
-export function PasswordResetEmail({ user, tokenId }: PasswordResetEmailProps) {
+export function PasswordResetEmail({ user, tokenId, ssoUiUrl }: PasswordResetEmailProps) {
 
   return (
     <EmailLayout title={'Reset your password'}>
@@ -31,7 +32,7 @@ export function PasswordResetEmail({ user, tokenId }: PasswordResetEmailProps) {
 
       <Item>
         <Button sx={{ marginTop: '15px' }} variant='contained'
-                href={process.env.SSO_UI_URL + `/reset-password?token=${tokenId}&uid=${user.id}`}>Reset password</Button>
+                href={ssoUiUrl + `/reset-password?token=${tokenId}&uid=${user.id}`}>Reset password</Button>
       </Item>
 
     </EmailLayout>

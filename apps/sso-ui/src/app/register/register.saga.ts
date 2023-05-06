@@ -35,5 +35,5 @@ function* registerErrorSaga({payload}: PayloadAction<AxiosError>) {
 
 function* registerSuccessSaga({payload}: PayloadAction<ILoginResponse>) {
   // redirect to app
-  location.href = `${environment.appUrl}?accessToken=${payload.accessToken}`;
+  location.href = `${environment.todoReduxSagaAppUrl}?accessToken=${payload.accessToken}`;
 }

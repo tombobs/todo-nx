@@ -15,10 +15,10 @@ export interface TodoListProps {
 export function TodoList({ todos, toggleStar, toggleComplete, select, opaqueComplete, activeTodo }: TodoListProps) {
   return (
     <List className={styles.list}>
-      {todos.map((todo: ITodo) =>
+      {todos.map((todo: ITodo, index: number) =>
         <TodoListItem click={select} key={todo.id} opaqueComplete={opaqueComplete}
                       toggleComplete={toggleComplete} isActive={activeTodo?.id === todo.id}
-                      toggleStar={toggleStar} item={todo}/>
+                      toggleStar={toggleStar} isFirst={index === 0} isLast={index === todos?.length - 1} item={todo}/>
       )}
     </List>
   );

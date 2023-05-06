@@ -12,10 +12,6 @@
 }
 
 
-.complete {
-
-}
-
 .bottom {
   margin: auto calc(-1 * #{var(--padding)}) 0 calc(-1 * #{var(--padding)});
   font-weight: lighter;
@@ -34,8 +30,8 @@
 
 .close {
   display: flex;
-  justify-content: flex-end;
   align-items: center;
+  padding-bottom: var(--padding);
 }
 
 .created {

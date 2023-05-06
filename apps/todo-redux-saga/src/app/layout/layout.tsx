@@ -3,7 +3,7 @@ import { Header } from './header/header';
 import styles from './layout.module.scss';
 import { Sidebar } from './sidebar/sidebar';
 import { useState } from 'react';
-import { ConfirmationDialog } from '@todo-nx/react-components';
+import { ConfirmationDialog, Footer, Snackbar } from "@todo-nx/react-components";
 
 export function Layout() {
   const [sidebarExpanded, setSidebarExpanded] = useState<boolean>(false);
@@ -24,7 +24,10 @@ export function Layout() {
         <Outlet/>
       </div>
 
+      <Footer />
+
       <ConfirmationDialog/>
+      <Snackbar anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} />
     </div>
   );
 }

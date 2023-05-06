@@ -9,4 +9,5 @@ export interface InputProps<T extends FieldValues> {
   pattern?: string;
   onChange?: any;
   defaultValue?: any;
+  multiline?: boolean;
 }

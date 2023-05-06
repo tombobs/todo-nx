@@ -61,6 +61,7 @@ export function Sidebar({ toggleExpand, isExpanded }: SidebarProps) {
         borderRadius: '0',
         width: '100%',
         whiteSpace: 'nowrap',
+        minHeight: '51px',
         '&:hover': { background: theme.palette.primary.main }
       }}>
         <ListItemButton onClick={() => dispatch(addList({ navigate }))}>
