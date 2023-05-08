@@ -3,16 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start:redux-saga": "nx serve todo-redux-saga",
-    "build:redux-saga": "nx build todo-redux-saga",
     "start:todo-api": "nx serve todo-api",
-    "build:todo-api": "nx build todo-api",
-    "start:sso-ui": "nx serve sso-ui",
-    "build:sso-ui": "nx build sso-ui",
-    "start:sso-api": "nx serve sso-api",
-    "build:sso-api": "nx build sso-api",
-    "build:interfaces": "nx build interfaces",
-    "nx:graph": "nx graph"
+    "start:email-api": "nx serve email-api",
+    "start:sso-api": "nx serve sso-api"
   },
   "private": true,
   "dependencies": {
@@ -20,6 +13,7 @@
     "@emotion/styled": "^11.10.6",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.1",
+    "@mui/system": "^5.12.3",
     "@nestjs/common": "^9.0.0",
     "@nestjs/config": "^2.3.1",
     "@nestjs/core": "^9.0.0",

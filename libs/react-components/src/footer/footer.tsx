@@ -1,13 +1,14 @@
 import styles from './footer.module.scss';
 
 import { GitHub, LinkedIn } from '@mui/icons-material';
-import { IconButton, Link, styled } from '@mui/material';
+import { IconButton, Link, styled, Typography } from "@mui/material";
+import { IUIEnvironment } from "@todo-nx/interfaces";
 
 const StyledLink = styled(Link)({
   marginRight: '10px',
 });
 
-export function Footer() {
+export function Footer({environment}: {environment?: IUIEnvironment} = {}) {
   return (
     <div
       style={{
@@ -20,7 +21,7 @@ export function Footer() {
       }}
     >
       <div style={{position: 'relative', bottom: '2px'}}>
-        <StyledLink href="https://www.tom-roberts.dev/contact">
+        <StyledLink href={`${environment?.wwwUrl || ''}/contact`}>
           Contact
         </StyledLink>
         <StyledLink href="/about">About</StyledLink>
@@ -28,9 +29,9 @@ export function Footer() {
       </div>
 
       <div className={styles.right}>
-        <div style={{ fontWeight: 'bold', opacity: 0.8 }}>
+        <Typography variant='body2' sx={{display: {xs: 'none', sm: 'block'}, fontWeight: 'bold', opacity: 0.8}}>
           Developer - Tom Roberts
-        </div>
+        </Typography>
         <IconButton>
           <a href="https://www.linkedin.com/in/tom-roberts-dev">
             <LinkedIn />

@@ -5,3 +5,12 @@ export interface IMail {
   text?: string;
   html?: string;
 }
+
+export interface IContactEmailRequest {
+  email: string;
+  message: string;
+}
+
+export interface IEmailReceipt {
+  sent: boolean;
+}

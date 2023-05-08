@@ -2,7 +2,7 @@ import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './app/app';
-import { ThemeProvider } from "@mui/material";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import { theme } from "@todo-nx/theme";
 import './styles.scss';
 
@@ -16,5 +16,6 @@ root.render(
         <App />
       </ThemeProvider>
     </BrowserRouter>
+    <CssBaseline enableColorScheme />
   </StrictMode>
 );

@@ -1,20 +1,16 @@
-import { Banner, Footer } from "@todo-nx/react-components";
+import { Banner, Footer } from '@todo-nx/react-components';
 import { Outlet } from 'react-router-dom';
-import styles from './layout.module.scss'
-import { Button } from "@mui/material";
+import styles from './layout.module.scss';
+import { environment } from '../../environments/environment';
 
 export function Layout() {
   return (
     <div className={styles.container}>
-      <div className={styles.top}>
-        <Banner absolutePosition={false} />
-
-        <Button variant='contained'>Say hello</Button>
-      </div>
+      <Banner environment={environment} />
 
       <Outlet />
 
-      <Footer />
+      <Footer environment={environment} />
     </div>
   );
 }

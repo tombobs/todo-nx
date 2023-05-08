@@ -13,5 +13,8 @@ export * from './loading-wrapper/loading-wrapper';
 
 export * from './password-strength-indicator/password-strength-indicator'
 
+export * from './flexbox/flexbox';
+export * from './dialog-page/dialog-page';
+
 export * from './inputs';
 export * from './hooks';

@@ -1,7 +1,6 @@
 import { Body, Controller, Get, Put, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
 import { JwtAuthGuard, UserFromToken } from '@todo-nx/authentication-api';
 import { IChangePassword, IUser } from '@todo-nx/interfaces';
-import { AuthService } from '../auth/auth.service';
 import { ProfileService } from './profile.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 

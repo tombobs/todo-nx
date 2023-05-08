@@ -1,30 +1,38 @@
-import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { User } from '../user/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { compare } from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import {
-  ICheckTokenRequest, ILogin,
+  ICheckTokenRequest,
+  ILogin,
   ILoginRequest,
   ILoginResponse,
   IRequestPasswordResetRequest,
   IResetPasswordRequest,
   IResetPasswordToken,
-  IUser
+  IUser,
 } from '@todo-nx/interfaces';
-import { AuthEmailService } from './auth-email.service';
 import { ResetPasswordToken } from './entities/reset-password-token.entity';
 import { LoginEntity } from './entities/login.entity';
+import { ApiHttpUtils } from '@todo-nx/utils-nestjs';
 
 @Injectable()
 export class AuthService {
-  constructor(@InjectRepository(User) private usersRepository: Repository<IUser>,
-              @InjectRepository(ResetPasswordToken) private resetPasswordTokenRepository: Repository<IResetPasswordToken>,
-              @InjectRepository(LoginEntity) private loginHistoryRepository: Repository<ILogin>,
-              private authEmailService: AuthEmailService,
-              private jwtService: JwtService) {
-  }
+  constructor(
+    @InjectRepository(User) private usersRepository: Repository<IUser>,
+    @InjectRepository(ResetPasswordToken)
+    private resetPasswordTokenRepository: Repository<IResetPasswordToken>,
+    @InjectRepository(LoginEntity)
+    private loginHistoryRepository: Repository<ILogin>,
+    private apiHttpUtils: ApiHttpUtils,
+    private jwtService: JwtService
+  ) {}
 
   async save(user: IUser): Promise<IUser> {
     return this.usersRepository.save(user);
@@ -37,7 +45,7 @@ export class AuthService {
 
   async validate({ email, password }: ILoginRequest): Promise<IUser> {
     const user = await this.usersRepository.findOne({ where: { email } });
-    const isValid = user && await compare(password, user.password);
+    const isValid = user && (await compare(password, user.password));
     if (!isValid) {
       throw new UnauthorizedException();
     }
@@ -45,20 +53,28 @@ export class AuthService {
   }
 
   async exists(user: IUser): Promise<boolean> {
-    return !!(await this.usersRepository.findOne({ where: { email: user.email } }));
+    return !!(await this.usersRepository.findOne({
+      where: { email: user.email },
+    }));
   }
 
-  async login({email, password}: ILoginRequest, ipAddress: string): Promise<ILoginResponse> {
-    const user = await this.validate({email, password});
+  async login(
+    { email, password }: ILoginRequest,
+    ipAddress: string
+  ): Promise<ILoginResponse> {
+    const user = await this.validate({ email, password });
     const accessToken = this.jwtService.sign({ user });
-    const login = await this.loginHistoryRepository.create()
+    const login = await this.loginHistoryRepository.create();
     login.user = user;
     login.ipAddress = ipAddress;
     await this.loginHistoryRepository.save(login);
     return { accessToken };
   }
 
-  async register({ email, password }: IUser, ipAddress: string): Promise<ILoginResponse> {
+  async register(
+    { email, password }: IUser,
+    ipAddress: string
+  ): Promise<ILoginResponse> {
     if (await this.findOne(email)) {
       throw new BadRequestException('Account already exists');
     }
@@ -66,15 +82,24 @@ export class AuthService {
       email,
       name: email,
       password: await User.hashPassword(password),
-      code: User.getCode()
+      code: User.getCode(),
     };
     await this.save(user);
-    await this.authEmailService.sendWelcomeEmail(user);
-    return this.login({ email: user.email, password: user.password }, ipAddress);
+    const { accessToken } = await this.login(
+      { email: user.email, password: user.password },
+      ipAddress
+    );
+    await this.sendWelcomeEmail(user, accessToken);
+    return { accessToken };
   }
 
-  async verifyAccount(email: string, code: string): Promise<{ verified: boolean }> {
-    const verifiedUser = await this.usersRepository.findOne({ where: { email, code } });
+  async verifyAccount(
+    email: string,
+    code: string
+  ): Promise<{ verified: boolean }> {
+    const verifiedUser = await this.usersRepository.findOne({
+      where: { email, code },
+    });
     if (verifiedUser) {
       verifiedUser.accountVerified = true;
       await this.usersRepository.save(verifiedUser);
@@ -82,17 +107,26 @@ export class AuthService {
     return { verified: !!verifiedUser };
   }
 
-  async requestPasswordReset({ email }: IRequestPasswordResetRequest): Promise<boolean> {
+  async requestPasswordReset({
+    email,
+  }: IRequestPasswordResetRequest): Promise<boolean> {
     const user = await this.findOne(email);
     if (!user) {
       throw new BadRequestException();
     }
-    const token = await this.resetPasswordTokenRepository.save(new ResetPasswordToken(user));
-    return this.authEmailService.sendPasswordResetEmail(user, token.id);
+    const token = await this.resetPasswordTokenRepository.save(
+      new ResetPasswordToken(user)
+    );
+    return this.sendPasswordResetEmail(user, token.id);
   }
 
-  async checkPasswordResetToken({ token, userId }: ICheckTokenRequest): Promise<boolean> {
-    return this.resetPasswordTokenRepository.exist({ where: { id: token, user: { id: userId } } });
+  async checkPasswordResetToken({
+    token,
+    userId,
+  }: ICheckTokenRequest): Promise<boolean> {
+    return this.resetPasswordTokenRepository.exist({
+      where: { id: token, user: { id: userId } },
+    });
   }
 
   async resetPassword({ password, token, userId }: IResetPasswordRequest) {
@@ -100,8 +134,8 @@ export class AuthService {
       where: {
         id: token,
         user: { id: userId },
-        valid: true
-      }
+        valid: true,
+      },
     });
     if (!validToken) {
       throw new BadRequestException();
@@ -110,7 +144,7 @@ export class AuthService {
     const hashedPassword = await User.hashPassword(password);
     await Promise.all([
       this.usersRepository.update({ id: userId }, { password: hashedPassword }),
-      this.resetPasswordTokenRepository.update({ id: token }, { valid: false })
+      this.resetPasswordTokenRepository.update({ id: token }, { valid: false }),
     ]);
   }
 
@@ -121,5 +155,13 @@ export class AuthService {
     }
     return user;
   }
-}
 
+  private sendWelcomeEmail(user: IUser, token: string): Promise<boolean> {
+    return this.apiHttpUtils.postEmailApi('auth/welcome', user, token);
+  }
+
+  private sendPasswordResetEmail(user: IUser, token: string): Promise<boolean> {
+    console.log(user, token)
+    return this.apiHttpUtils.postEmailApi('auth/password-reset', {user, token});
+  }
+}

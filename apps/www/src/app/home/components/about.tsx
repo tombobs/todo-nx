@@ -1,6 +1,8 @@
 import styles from '../home.module.scss';
-import { Typography } from "@mui/material";
-import { Favorite, FavoriteBorder } from '@mui/icons-material';
+import { Box, Grid, Typography } from '@mui/material';
+import { Favorite, FavoriteBorder, FavoriteOutlined } from "@mui/icons-material";
+import { Section } from '../section';
+import { Flexbox } from '@todo-nx/react-components';
 
 interface ITechItem {
   image: string;
@@ -26,31 +28,57 @@ const techItems: ITechItem[] = [
 
 export function About() {
   return (
-    <div className={styles.section} style={{background: '#B15D46', padding: '5vw 20vw 1vw 20vw', color: 'white'}}>
-      <Typography variant='h5' sx={{marginBottom: '10px'}}>
+    <Section style={{ backgroundColor: 'secondary.main', color: 'white' }}>
+      <Typography variant="body1" sx={{ mb: 2, fontWeight: 'bold' }}>
         Hi, I'm Tom. An experienced web-developer available for freelance work.
       </Typography>
 
-      <Typography variant='h5'>
-        In my 12+ years as a developer I've worked with a wide variety of companies, agencies and startups.
-        I've been lucky enough to collaborate with and learn from some highly talented people while
-        creating software products for business and consumer use.
+      <Typography variant="body1" sx={{maxWidth: '1200px'}}>
+        In my 12+ years as a developer I've worked with a wide variety of
+        companies, agencies and startups. I've been lucky enough to collaborate
+        with and learn from some highly talented people while creating software
+        products for business and consumer use.
       </Typography>
 
-      <Typography variant='h5' sx={{marginTop: '50px', display: 'flex', alignItems: 'center'}}>
-        Technologies I <Favorite sx={{color: 'red', height: '25px', width: '25px', marginLeft: '5px'}} />
+      <Typography
+        variant="h4"
+        sx={{ mt: 4, display: 'flex', alignItems: 'center', fontWeight: 'bold' }}
+      >
+        Technologies I
+        <FavoriteBorder
+          sx={{
+            height: 35,
+            width: 35,
+            ml: 1
+          }}
+        />
       </Typography>
 
-      <div className={styles.box}>
-        {techItems.map((t: ITechItem) => (
-            <div className={styles.item}>
-              <img src={`/assets/tech/${t.image}`} width='100%' />
-              {t.name}
-            </div>
-          )
-
-        )}
-      </div>
-    </div>
+      <Box
+        sx={{
+          p: 4,
+          mt: 1,
+          maxWidth: 1200,
+          backgroundColor: '#ffffff61',
+          borderRadius: '5px'
+        }}
+      >
+        <Grid container spacing={2}>
+          {techItems.map((t: ITechItem) => (
+            <Grid item xs={4} md={3} lg={1.5} key={t.name}>
+              <Flexbox >
+                <img
+                  src={`/assets/tech/${t.image}`}
+                  style={{ width: '50%', height: '50%' }}
+                />
+                <div style={{textTransform: 'uppercase', fontSize: '0.8em'}}>
+                  {t.name}
+                </div>
+              </Flexbox>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
+    </Section>
   );
 }

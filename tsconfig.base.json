@@ -21,7 +21,8 @@
       "@todo-nx/react-components": ["libs/react-components/src/index.ts"],
       "@todo-nx/s3-api": ["libs/s3-api/src/index.ts"],
       "@todo-nx/theme": ["libs/theme/src/index.ts"],
-      "@todo-nx/utils": ["libs/utils/src/index.ts"]
+      "@todo-nx/utils": ["libs/utils/src/index.ts"],
+      "@todo-nx/utils-nestjs": ["libs/utils-nestjs/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

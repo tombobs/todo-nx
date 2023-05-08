@@ -5,6 +5,7 @@ import SMTPTransport from 'nodemailer/lib/smtp-transport';
 import { ComponentType } from 'react';
 import { renderEmail } from 'react-html-email';
 import { jsx } from "@emotion/react";
+import { ApiHttpUtils } from "@todo-nx/utils";
 
 
 
@@ -13,7 +14,7 @@ export class EmailService {
 
   private transporter: Transporter<SMTPTransport.SentMessageInfo>;
 
-  constructor() {
+  constructor(private apiHttpUtils: ApiHttpUtils) {
     this.transporter = createTransport({
       host: process.env['SMTP_HOST'],
       port: +process.env['SMTP_PORT']!,
@@ -57,4 +58,6 @@ export class EmailService {
     // @ts-ignore
     return renderEmail((<Component {...data} />));
   }
+
+
 }

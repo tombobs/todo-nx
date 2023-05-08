@@ -1,4 +1,3 @@
-import { CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import { IUser } from './user.interface';
 
 export interface ILogin {

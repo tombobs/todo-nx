@@ -1,20 +1,21 @@
 import { EmojiPeople } from '@mui/icons-material';
+import { IUIEnvironment } from "@todo-nx/interfaces";
 
 export interface BannerProps {
   absolutePosition?: boolean;
+  environment?: IUIEnvironment;
 }
 
-export function Banner({absolutePosition}: BannerProps) {
+export function Banner({absolutePosition, environment}: BannerProps) {
   absolutePosition = absolutePosition ?? true;
   return (
-    <div style={{
+    <a style={{
       position: absolutePosition ? 'absolute' : 'static',
       left: '10px',
       top: '10px',
       fontFamily: 'cursive',
       fontWeight: 'bolder',
       color: '#0c0cd2eb',
-      fontSize: '25px',
       border: '4px solid #ffeb008a',
       padding: '5px',
       borderRadius: '5px',
@@ -22,10 +23,11 @@ export function Banner({absolutePosition}: BannerProps) {
       alignItems: 'center',
       background: 'white',
       zIndex: 1,
-      width: '250px'
-    }}>
+      width: '180px',
+      textDecoration: 'none'
+    }} href={environment?.wwwUrl || 'https://tom-roberts.dev'}>
       <EmojiPeople/>
       <div style={ { marginLeft: '5px' } }>tom-roberts.dev</div>
-    </div>
+    </a>
   );
 }
