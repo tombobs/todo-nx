@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { IContactEmailRequest, ILoginRequest } from "@todo-nx/interfaces";
 import { EmailInput, Flexbox, SubmitButton, TextInput } from "@todo-nx/react-components";
-import { CheckCircle, Login } from "@mui/icons-material";
+import { CheckCircle, Login, MailOutline } from "@mui/icons-material";
 import { Section } from '../section';
 import { UiHttpUtils } from '@todo-nx/utils';
 import { environment } from "../../../environments/environment";
@@ -37,8 +37,8 @@ export function GetInTouch() {
   }
 
   return (
-    <Section style={{background: 'rgba(61, 38, 145, 0.5)'}}>
-      <Typography variant="h4" sx={{ m: 2, color: 'primary.main' }}>
+    <Section style={{background: 'rgba(61, 38, 145, 1)'}}>
+      <Typography variant="h4" sx={{ m: 2, color: 'primary.main', display: isSent ? 'none' : 'block' }}>
         Get in touch
       </Typography>
 
@@ -65,15 +65,15 @@ export function GetInTouch() {
 
         <SubmitButton loading={isSending}>
           Send
-          <Login sx={{ marginLeft: '10px' }} />
+          <MailOutline sx={{ marginLeft: '10px' }} />
         </SubmitButton>
       </form>}
 
       {isSent &&
         <Flexbox sx={{mt: 2, color: 'black'}}>
           <Flexbox sx={{flexDirection: 'row', mb: 1}}>
-            <CheckCircle sx={{mr: 1}} />
-            <Typography variant='body2' sx={{color: 'black'}}>Thanks - your message has been sent</Typography>
+            <MailOutline sx={{mr: 1}} />
+            <Typography variant='body2' sx={{color: 'black'}}>Thanks - your message has been sent - I'll get back to you as soon as I can</Typography>
           </Flexbox>
 
           <Flexbox>

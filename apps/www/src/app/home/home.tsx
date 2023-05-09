@@ -1,12 +1,11 @@
 import styles from './home.module.scss';
-import { Avatar, Button, Typography } from '@mui/material';
-import { environment } from '../../environments/environment';
+import { Button } from '@mui/material';
 import { Clients } from './components/clients';
 import { GetInTouch } from './components/get-in-touch';
 import { About } from './components/about';
 import { Examples } from './components/examples';
 import { HireMe } from './components/hire-me';
-import { Flexbox } from '@todo-nx/react-components';
+import { Top } from './components/top';
 
 export function Home() {
   function scrollToContact(): void {
@@ -14,14 +13,22 @@ export function Home() {
   }
 
   return (
-    <div style={{
-      backgroundImage: `url('/assets/bg.png')`,
-      backgroundAttachment: 'fixed',
-      backgroundRepeat: 'no-repeat',
-      backgroundSize: 'cover'
-    }}>
+    <div
+      style={{
+        backgroundImage: `url('/assets/bg.png')`,
+        backgroundAttachment: 'initial !important',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'fit-content',
+      }}
+    >
       <Button
-        sx={{ fontWeight: 'bold', position: 'absolute', right: 5, top: 5 }}
+        sx={{
+          fontWeight: 'bold',
+          position: 'absolute',
+          right: 10,
+          top: 10,
+          fontSize: '1.1rem',
+        }}
         color="secondary"
         variant="outlined"
         onClick={scrollToContact}
@@ -30,18 +37,7 @@ export function Home() {
       </Button>
 
       <div className={styles.container}>
-
-        <Typography variant="h3" component="h1" sx={{fontWeight: 'bold'}}>
-          Full-stack developer & consultant
-        </Typography>
-        <Typography sx={{ mt: 1 }} variant="h4" component="h2">
-          I build awesome web applications
-        </Typography>
-
-        <Avatar
-          src={`${environment.assetsUrl}/me.jpg`}
-          sx={{ mb: 30, mt: 4, height: 150, width: 150 }}
-        />
+        <Top />
 
         <About />
 

@@ -1,5 +1,5 @@
 import styles from './login.module.scss';
-import { Link } from '@mui/material';
+import { Box, Link } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 import { Banner } from '@todo-nx/react-components';
 import { LoginForm } from './login-form';
@@ -9,7 +9,7 @@ export function Login() {
   return (
     <div className={styles.content}>
 
-      <div className={styles.left}>
+      <Box className={styles.left} sx={{width: {xs: 'initial', md: '50%'}, margin: {xs: 'auto', md: '0'} }}>
         <div className={styles.formContainer}>
           <h1 className={styles.title}>Login</h1>
           <p>Securely access your account.</p>
@@ -26,9 +26,9 @@ export function Login() {
           </div>
         </div>
 
-      </div>
+      </Box>
 
-      <div className={styles.right}>
+      <Box className={styles.right} sx={{display: {md: 'flex', xs: 'none'}}}>
         <div className={styles.text}>
           <h1>Break free</h1>
 
@@ -43,7 +43,7 @@ export function Login() {
           </div>
         </div>
         <img src='../../../assets/images/small-horse.png'/>
-      </div>
+      </Box>
     </div>
   );
 }

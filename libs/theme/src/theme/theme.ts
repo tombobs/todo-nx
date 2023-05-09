@@ -2,7 +2,6 @@ import { createTheme, responsiveFontSizes } from '@mui/material';
 import palette from './palette.module.scss';
 
 const _theme = createTheme({
-
   palette: {
     primary: {
       main: palette.primary,

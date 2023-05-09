@@ -3,7 +3,7 @@ import { GetInTouch } from "../home/components/get-in-touch";
 
 export function Contact() {
   return (
-    <DialogPage width='1000px'>
+    <DialogPage width='1000px' center={true}>
       <GetInTouch />
     </DialogPage>
   );

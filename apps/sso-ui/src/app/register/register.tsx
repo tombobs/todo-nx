@@ -1,12 +1,12 @@
 import styles from './register.module.scss';
 import { Link as RouterLink } from 'react-router-dom';
-import { Link } from '@mui/material';
+import { Box, Link } from "@mui/material";
 import { RegisterForm } from './register-form';
 
 export function Register() {
   return (
-    <div className={styles.container}>
-      <div className={styles.left}>
+    <Box className={styles.container}>
+      <Box className={styles.left} sx={{width: {xs: 'initial', md: '50%'}, margin: {xs: 'auto', md: '0'} }}>
         <div className={styles.formContainer}>
           <h2>Register</h2>
           <p>Create an account and start taking a look around.</p>
@@ -17,9 +17,9 @@ export function Register() {
             Already have an account? <Link component={RouterLink} to='/' className={styles.bold}>Login</Link>
           </div>
         </div>
-      </div>
+      </Box>
 
-      <div className={styles.right}>
+      <Box className={styles.right} sx={{display: {md: 'flex', xs: 'none'}}}>
         <div className={styles.text}>
           <h1>Prepare for blastoff!</h1>
           <p>Supercharge your development<br/>
@@ -28,7 +28,7 @@ export function Register() {
         </div>
         <img className={styles.bg} src='../../../assets/images/register-bg.png'/>
         <img className={styles.rocket} src='../../../assets/images/rocket.png'/>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }

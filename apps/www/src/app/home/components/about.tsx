@@ -7,6 +7,7 @@ import { Flexbox } from '@todo-nx/react-components';
 interface ITechItem {
   image: string;
   name: string;
+  hideSm?: boolean;
 }
 
 const techItems: ITechItem[] = [
@@ -17,12 +18,12 @@ const techItems: ITechItem[] = [
   { name: 'redux', image: 'redux.svg' },
   { name: 'ngrx', image: 'ngrx.svg' },
   { name: 'material', image: 'material.svg' },
-  { name: 'nodejs', image: 'nodejs.svg' },
+  { name: 'nodejs', image: 'node.png' },
   { name: 'aws', image: 'aws.svg' },
-  { name: 'mariadb', image: 'mariadb.svg' },
+  { name: 'mariadb', image: 'mariadb.svg', hideSm: true },
   { name: 'typescript', image: 'typescript.svg' },
   { name: 'nestjs', image: 'nestjs.svg' },
-  { name: 'linode', image: 'linode.svg' },
+  { name: 'linode', image: 'linode.svg', hideSm: true },
   { name: 'mongodb', image: 'mongodb.svg' },
 ];
 
@@ -65,7 +66,7 @@ export function About() {
       >
         <Grid container spacing={2}>
           {techItems.map((t: ITechItem) => (
-            <Grid item xs={4} md={3} lg={1.5} key={t.name}>
+            <Grid item xs={4} md={3} lg={1.7} key={t.name} sx={{display: {lg: 'block', xs: t.hideSm ? 'none' : 'block'}}}>
               <Flexbox >
                 <img
                   src={`/assets/tech/${t.image}`}

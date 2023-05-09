@@ -1,7 +1,6 @@
 import { Grid, Typography } from '@mui/material';
-import styles from '../home.module.scss';
 import { Section } from '../section';
-import { Flexbox } from '@todo-nx/react-components';
+import { Flexbox, GlassContainer } from "@todo-nx/react-components";
 
 interface IClient {
   name: string;
@@ -21,7 +20,9 @@ const clients: IClient[] = [
 
 export function Clients() {
   return (
-    <Section style={{ background: 'rgba(0,0,0,0.8)' }}>
+    <Section style={{ backgroundImage: `url(/assets/wall-bg_small.png)`, backgroundSize: 'cover'}}>
+
+
       <Typography sx={{ color: 'white' }} variant="h4" component="h3">
         You're in good company
       </Typography>
@@ -33,23 +34,25 @@ export function Clients() {
         Clients I've consulted for
       </Typography>
 
-      <Grid container spacing={2} sx={{ px: 8, maxWidth: 800 }}>
-        {clients.map((client: IClient) => (
-          <Grid lg={4} sm={6} xs={12} item key={client.imageName}>
-            <Flexbox sx={{ p: 1 }}>
-              <img
-                src={`/assets/clients/${client.imageName}`}
-                style={{
-                  width: '100%',
-                  maxWidth: '300px',
-                  objectFit: client.cover ? 'cover' : 'contain',
-                  transform: `scale(${client.scale})`,
-                }}
-              />
-            </Flexbox>
-          </Grid>
-        ))}
-      </Grid>
+      <GlassContainer borderColor='primary.main'>
+        <Grid container spacing={2} sx={{ px: 8, maxWidth: 800 }}>
+          {clients.map((client: IClient) => (
+            <Grid lg={4} sm={6} xs={12} item key={client.imageName}>
+              <Flexbox sx={{ p: 1 }}>
+                <img
+                  src={`/assets/clients/${client.imageName}`}
+                  style={{
+                    width: '100%',
+                    maxWidth: '300px',
+                    objectFit: client.cover ? 'cover' : 'contain',
+                    transform: `scale(${client.scale})`,
+                  }}
+                />
+              </Flexbox>
+            </Grid>
+          ))}
+        </Grid>
+      </GlassContainer>
     </Section>
   );
 }

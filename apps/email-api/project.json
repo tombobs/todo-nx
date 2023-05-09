@@ -16,7 +16,8 @@
         "tsConfig": "apps/email-api/tsconfig.app.json",
         "assets": ["apps/email-api/src/assets"],
         "isolatedConfig": true,
-        "webpackConfig": "apps/email-api/webpack.config.js"
+        "webpackConfig": "apps/email-api/webpack.config.js",
+        "generatePackageJson": true
       },
       "configurations": {
         "development": {},

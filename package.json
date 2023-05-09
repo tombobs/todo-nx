@@ -5,7 +5,8 @@
   "scripts": {
     "start:todo-api": "nx serve todo-api",
     "start:email-api": "nx serve email-api",
-    "start:sso-api": "nx serve sso-api"
+    "start:sso-api": "nx serve sso-api",
+    "start:ai-api": "nx serve openai-api"
   },
   "private": true,
   "dependencies": {

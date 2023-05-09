@@ -10,5 +10,6 @@ export const environment: IUIEnvironment = {
   ssoApiUrl: 'http://localhost:3030/api',
   ssoUiUrl: 'http://localhost:42069',
 
-  emailApiUrl: 'http://localhost:3031/email-api'
+  emailApiUrl: 'http://localhost:3031/email-api',
+  wwwUrl: 'http://localhost:4040'
 };

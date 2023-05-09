@@ -9,10 +9,11 @@ export interface IUIEnvironment {
   assetsUrl?: string;
   emailApiUrl?: string;
   wwwUrl?: string;
+  aiApiUrl?: string;
 }
 
 export const baseEnvironment: IUIEnvironment = {
   avatarPath: 'https://profile-photos.eu-central-1.linodeobjects.com/',
   accessTokenKey: 'accessToken',
-  wwwUrl: ''
+  wwwUrl: 'https://www.tom-roberts.dev'
 } as IUIEnvironment;

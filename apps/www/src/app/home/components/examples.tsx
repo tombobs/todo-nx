@@ -3,7 +3,7 @@ import { ChevronRight } from '@mui/icons-material';
 import React, { useState } from 'react';
 import { Section } from '../section';
 import { environment } from '../../../environments/environment';
-import { Flexbox } from '@todo-nx/react-components';
+import { Flexbox, GlassContainer } from '@todo-nx/react-components';
 
 interface IApp {
   label: string;
@@ -15,9 +15,17 @@ interface IApp {
 const apps: IApp[] = [
   {
     label: 'Todo-redux-saga',
-    description: 'A feature-rich todo-list application using React & Redux-Saga',
+    description:
+      'A feature-rich todo-list application using React & Redux-Saga',
     imageName: 'todo-redux-saga.png',
     url: environment.todoReduxSagaAppUrl,
+  },
+  {
+    label: 'Storytime',
+    description:
+      'A story writing application built using React, Python and Chat-GPT',
+    imageName: 'storytime.png',
+    url: `https://storytime.tom-roberts.dev`,
   },
   {
     label: 'Speaker keep-alive',
@@ -25,13 +33,6 @@ const apps: IApp[] = [
       'A simple site that plays an inaudible (10hz) sound to prevent studio monitor speakers from sleeping',
     imageName: 'speaker-keep-alive.png',
     url: 'https://speaker-keep-alive.tom-roberts.dev/',
-  },
-  {
-    label: 'Storytime',
-    description:
-      'A story writing application built using React, Python and Chat-GPT',
-    imageName: 'storytime.png',
-    url: `https://storytime.website-eu-central-1.linodeobjects.com/`,
   },
   {
     label: 'Single sign on',
@@ -47,76 +48,71 @@ const apps: IApp[] = [
     imageName: 'wundr.png',
     url: 'https://www.wearewundr.com/',
   },
-
 ];
 
 export function Examples() {
   const [activeExample, setActiveExample] = useState<IApp>();
 
   return (
-    <Section style={{
-
-    }}>
+    <Section
+      style={{
+        backgroundImage: `url(/assets/bg.png)`,
+        backgroundSize: 'cover',
+      }}
+    >
       <Typography variant="h4" sx={{ margin: '20px' }}>
         Some examples of my work
       </Typography>
       <Grid container spacing={2} sx={{ maxWidth: 1060 }}>
         {apps.map((app: IApp) => (
           <Grid item sm={12} md={6}>
-            <Flexbox
-              key={app.label}
-              sx={{
-                maxWidth: 500,
-                background: 'rgba(255, 255, 255, 0.2)',
-                boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
-                backdropFilter: 'blur(5px)',
-                border: '1px solid rgba(255, 255, 255, 0.3)',
-                mb: 2,
-                borderRadius: 1,
-                p: { sm: 2, xs: 1 },
-                borderWidth: '3px',
-                borderStyle: 'solid',
-                borderColor: 'secondary.main',
-                alignItems: 'flex-start',
-              }}
-            >
-              <Typography
-                sx={{ fontWeight: 'bold', mb: 0.25 }}
-                variant="body1"
-                color="white"
+            <GlassContainer>
+              <Flexbox
+                key={app.url}
+                sx={{
+                  maxWidth: 500,
+                  mb: 2,
+                  alignItems: 'flex-start',
+                }}
               >
-                {app.label}
-              </Typography>
-              <Typography sx={{ mb: 1 }} variant="body2" color="white">
-                {app.description}
-              </Typography>
-
-              <Flexbox sx={{ p: 1, flexDirection: 'row' }}>
-                <img
-                  onClick={() => setActiveExample(app)}
-                  style={{
-                    height: 170,
-                    width: 290,
-                    marginTop: 5,
-                    cursor: 'pointer',
-                    maxWidth: '70%',
-                    objectFit: 'scale-down'
-                  }}
-                  src={`/assets/apps/${app.imageName}`}
-                  alt={`Screenshot of ${app.label} application`}
-                />
-                <Button
-                  href={app.url}
-                  component={Link}
-                  target="_blank"
-                  variant="contained"
-                  color='secondary'
-                  sx={{ ml: 3, height: 100, maxWidth: 20, p: 1 }}
+                <Typography
+                  sx={{ fontWeight: 'bold', mb: 0.25 }}
+                  variant="body1"
+                  color="white"
                 >
-                  <ChevronRight />
-                </Button>
+                  {app.label}
+                </Typography>
+                <Typography sx={{ mb: 1 }} variant="body2" color="white">
+                  {app.description}
+                </Typography>
+
+                <Flexbox sx={{ p: 1, flexDirection: 'row' }}>
+                  <img
+                    onClick={() => setActiveExample(app)}
+                    style={{
+                      height: 170,
+                      width: 290,
+                      marginTop: 5,
+                      cursor: 'pointer',
+                      maxWidth: '70%',
+                      objectFit: 'scale-down',
+                    }}
+                    src={`/assets/apps/${app.imageName}`}
+                    alt={`Screenshot of ${app.label} application`}
+                  />
+                  <Button
+                    href={app.url}
+                    component={Link}
+                    target="_blank"
+                    variant="contained"
+                    color="secondary"
+                    sx={{ ml: 3, height: 100, maxWidth: 20, p: 1 }}
+                  >
+                    <ChevronRight />
+                  </Button>
+                </Flexbox>
               </Flexbox>
-            </Flexbox>
+            </GlassContainer>
           </Grid>
         ))}
       </Grid>
