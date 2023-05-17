@@ -10,6 +10,8 @@ export * from './confirmation-dialog/confirmation-dialog'
 export * from './confirmation-dialog/confirmation-dialog.store'
 
 export * from './loading-wrapper/loading-wrapper';
+export * from './picture/picture';
+export * from './picture/background-image';
 
 export * from './password-strength-indicator/password-strength-indicator'
 

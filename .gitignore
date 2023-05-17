@@ -6,3 +6,5 @@ dist
 # Next.js
 .next
 deploy.sh
+
+.angular

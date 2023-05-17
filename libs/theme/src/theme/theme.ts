@@ -58,6 +58,9 @@ theme.typography = {
   ...theme.typography,
   h3: {
     ...theme.typography.h3,
+    [theme.breakpoints.only('sm')]: {
+      fontSize: '2rem',
+    },
     [theme.breakpoints.only('xs')]: {
       fontSize: '1.25rem',
     },

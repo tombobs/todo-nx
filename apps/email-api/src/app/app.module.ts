@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
-import { AuthEmailModule } from "./auth-email/auth-email.module";
-import { ContactEmailModule } from "./contact-email/contact-email.module";
+import { AuthEmailModule } from './auth-email/auth-email.module';
+import { ContactEmailModule } from './contact-email/contact-email.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [AuthEmailModule, ContactEmailModule]
+  imports: [ConfigModule.forRoot(), AuthEmailModule, ContactEmailModule],
 })
 export class AppModule {}

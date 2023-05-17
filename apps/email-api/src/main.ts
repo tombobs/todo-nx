@@ -15,7 +15,7 @@ async function bootstrap() {
   app.enableCors();
   app.setGlobalPrefix(globalPrefix);
 
-  setupSwagger(app);
+  // setupSwagger(app);
 
   const port = process.env.EMAIL_API_PORT || 3031;
   await app.listen(port);

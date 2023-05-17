@@ -13,4 +13,4 @@ echo '  Installing dependencies'
 ssh $SERVER 'cd ~/'$APP_NAME'-api && npm install'
 
 echo '  Restarting app'
-#ssh $SERVER 'pm2 restart '$APP_NAME' && pm2 logs '$APP_NAME
+ssh $SERVER 'pm2 restart '$APP_NAME' && pm2 logs '$APP_NAME

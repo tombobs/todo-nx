@@ -13,14 +13,7 @@ export function Home() {
   }
 
   return (
-    <div
-      style={{
-        backgroundImage: `url('/assets/bg.png')`,
-        backgroundAttachment: 'initial !important',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'fit-content',
-      }}
-    >
+    <>
       <Button
         sx={{
           fontWeight: 'bold',
@@ -48,6 +41,6 @@ export function Home() {
         <Examples />
         <GetInTouch />
       </div>
-    </div>
+    </>
   );
 }
